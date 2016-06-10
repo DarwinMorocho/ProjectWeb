@@ -79,6 +79,9 @@ public class BuscarProveedorCtrl extends HttpServlet {
 			System.out.println("detalle "+item.getDetDescripcion());
 		}
 		
+		//insert
+		Cliente cli= new Cliente("1718276433","ddddddd","ddddddd", "234567","234567","234567", "234567");
+		servicioCliente.crear(cli);
 		
 	}
 }
