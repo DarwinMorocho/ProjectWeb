@@ -1,7 +1,9 @@
 package modelo;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -55,6 +57,24 @@ public class Cliente implements Serializable {
 
 	public Cliente() {
 	}
+	
+	
+
+	public Cliente(String cliCedula, String cliCorreo, String cliDireccion,
+			String cliMovil, String cliNombre, String cliRazonSocial,
+			String cliTelefono) {
+		super();
+		this.cliCedula = cliCedula;
+		this.cliCorreo = cliCorreo;
+		this.cliDireccion = cliDireccion;
+		this.cliMovil = cliMovil;
+		this.cliNombre = cliNombre;
+		this.cliRazonSocial = cliRazonSocial;
+		this.cliTelefono = cliTelefono;
+		this.facturas = facturas;
+	}
+
+
 
 	public int getIdCliente() {
 		return this.idCliente;
