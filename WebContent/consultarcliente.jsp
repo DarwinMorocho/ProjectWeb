@@ -27,9 +27,10 @@
 	</center>
 
 	<center>
-<th><a style="color: red; float: right:;"
-					href="http://localhost:8080/ProjectWeb/nuevocliente.jsp">
-						Nuevo</a></th>
+		<th><a style="color: red; float: right:;"
+			href="http://localhost:8080/ProjectWeb/nuevocliente.jsp"> Nuevo</a></th>
+		<th><a href="ConcultaFacturasCtrl">Facturas</th>
+
 		<table style="width: 100%">
 			<tr>
 				<th style='display: none;'>Id<</th>
@@ -40,9 +41,9 @@
 				<th>Telefono</th>
 				<th>Movil</th>
 				<th>Correo</th>
-					<th>Actualizar</th>
+				<th>Actualizar</th>
 				<th>Eliminar</th>
-				
+
 			</tr>
 			<%
 				List<Cliente> listaCli = (List<Cliente>) request
@@ -62,7 +63,7 @@
 				<td><a href="ActualizarClienteCtrl?id=<%=l.getIdCliente()%>">
 						Actualizar </a></td>
 				<td><a href="EliminarClienteCtrl?id=<%=l.getIdCliente()%>">Eliminar</td>
-				<td><a href="ConcultaFacturasCtrl?id=<%=l.getIdCliente()%>">Facturas</td>
+<%-- 				<td><a href="ConcultaFacturasCtrl?id=<%=l.getIdCliente()%>">Facturas</td> --%>
 			</tr>
 			<%
 				}

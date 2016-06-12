@@ -34,7 +34,7 @@ public class ConcultaFacturasCtrl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String idCliente = request.getParameter("id");
+//		String idCliente = request.getParameter("id");
 		//DEVOLVER UNA LISTA DE LAS FACTURAS QUE PERTENECEN AL USUARIO
 		
 		ServicioFactura servicioFactura = new ServicioFactura();
