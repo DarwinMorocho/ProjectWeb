@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ import modelo.Producto;
 public class EliminarProductoCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ServicioProducto servicioProducto= new ServicioProducto();
+    
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,6 +43,9 @@ public class EliminarProductoCtrl extends HttpServlet {
 		prod.setIdProducto(Integer.valueOf(id));
 		servicioProducto.eliminar(prod);
 
+		List<Producto> listaProd= servicioProducto.findByProdNombre("");
+		request.setAttribute("PRODUCTO", listaProd);
+		//redireccionar a la vista
 		
 		RequestDispatcher rd = 
 				request.getServletContext().getRequestDispatcher(
