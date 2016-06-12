@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import servicios.ServicioCliente;
+import servicios.ServicioFactura;
 import servicios.ServicioProducto;
 import modelo.Cliente;
+import modelo.Factura;
 import modelo.Producto;
 
 /**
@@ -23,6 +25,7 @@ public class MenuCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ServicioProducto servicioProducto = new ServicioProducto();
 	ServicioCliente servicioCliente= new ServicioCliente();
+	ServicioFactura servicioFactura= new ServicioFactura();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,27 +44,38 @@ public class MenuCtrl extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 
-		String prod = request.getParameter("par");
-		System.out.println("entra al serlevt  menu "+prod);
-		if (prod.equals("producto")) {
-
-			List<Producto> listaProd = servicioProducto.findByProdNombre("");
-			request.setAttribute("PRODUCTO", listaProd);
-			// redireccionar a la vista
-			System.out.print("1");
-			RequestDispatcher rd = request.getServletContext()
-					.getRequestDispatcher("/consultarproductos.jsp");
-			rd.forward(request, response);
-		}else{
-			List<Cliente> listaCli = servicioCliente.findByCliCedula("");
-			request.setAttribute("CLIENTE", listaCli);
-			// redireccionar a la vista
-			System.out.print("2");
-			RequestDispatcher rd = request.getServletContext()
-					.getRequestDispatcher("/consultarcliente.jsp");
-			rd.forward(request, response);
+		String menu = request.getParameter("par");
+		System.out.println("entra al serlevt  menu "+menu);
+		
+		switch(menu){
+			case "producto":
+				List<Producto> listaProd = servicioProducto.findAll();//.findByProdNombre("");
+				request.setAttribute("PRODUCTO", listaProd);
+				// redireccionar a la vista
+				System.out.print("1");
+				RequestDispatcher rdProducto = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
+				rdProducto.forward(request, response);
+				break;
 			
+			case "cliente":
+				List<Cliente> listaCli = servicioCliente.findAll();//findByCliCedula("");
+				request.setAttribute("CLIENTE", listaCli);
+				// redireccionar a la vista
+				System.out.print("2");
+				RequestDispatcher rdCliente = request.getServletContext().getRequestDispatcher("/consultarcliente.jsp");
+				rdCliente.forward(request, response);
+				break;
+				
+			case "factura":
+				List<Factura> listaFacturas = servicioFactura.findAll();
+				request.setAttribute("FACTURA", listaFacturas);
+				// redireccionar a la vista
+				System.out.print("2");
+				RequestDispatcher rdFactura = request.getServletContext().getRequestDispatcher("/consultarcliente.jsp");
+				rdFactura.forward(request, response);
+				break;
 		}
+		
 	}
 
 	/**
