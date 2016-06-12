@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.Usuario;
+import servicios.LoginSession;
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
 import servicios.ServicioUsuario;
@@ -28,7 +29,7 @@ public class NuevaFacturaCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ServicioFactura servicioFactura= new ServicioFactura();
-	ServicioUsuario servicioUsuario= new ServicioUsuario();
+	//ServicioUsuario servicioUsuario= new ServicioUsuario();
 	ServicioCliente servicioCliente= new ServicioCliente();
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -59,7 +60,7 @@ public class NuevaFacturaCtrl extends HttpServlet {
             
 			//String estado = request.getParameter("facEstado");
 			String cliente = request.getParameter("fac_cliente");
-			String usuario = request.getParameter("fac_usuario");//??????????????
+			//String usuario = request.getParameter("fac_usuario");//??????????????
 			String numeroFactura = request.getParameter("fac_numero");
 			String fecha = request.getParameter("fac_fecha");// "11-11-2012";		
 			Date inputDate = dateFormat.parse(fecha);
@@ -70,7 +71,8 @@ public class NuevaFacturaCtrl extends HttpServlet {
 			if(numeroFactura!=null){
 				
 				// Encontrar objeto Usuario
-				Usuario usuarioLogin = servicioUsuario.findOneByIdUsuario(Integer.parseInt(usuario));
+				//Usuario usuarioLogin = servicioUsuario.findOneByIdUsuario(Integer.parseInt(usuario));			
+				Usuario usuarioLogin = LoginSession.getInstance().getUsuarioLogueado();
 				
 				// Encontrar objeto Usuario
 				Cliente clienteEscogido = servicioCliente.findByIdCliente(Integer.parseInt(cliente));
@@ -97,7 +99,7 @@ public class NuevaFacturaCtrl extends HttpServlet {
 //		Producto producto = (Producto) servicioProducto.findByIdProducto(Integer.valueOf(id));
 //		request.setAttribute("PRODUCTO", producto);
 		// redireccionar a la vista
-		System.out.print("2");
+		//System.out.print("2");
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
 	}

@@ -22,7 +22,7 @@
 	<center>
 		<form method="post" action="ActualizarFacturaCtrl">
 			<%
-			Factura factura = (Factura)request.getAttribute("PRODUCTO");
+			Factura factura = (Factura)request.getAttribute("FACTURA");
 			%>
 
 			<table>

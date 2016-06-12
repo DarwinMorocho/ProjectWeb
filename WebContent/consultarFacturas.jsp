@@ -41,7 +41,7 @@
 				
 			</tr>
 			<%
-				List<Factura> listaFacturas = (List<Factura>) request.getAttribute("PRODUCTO");
+				List<Factura> listaFacturas = (List<Factura>) request.getAttribute("FACTURA");
 				if (listaFacturas != null) {
 					for (Factura factura : listaFacturas) {
 			%>
