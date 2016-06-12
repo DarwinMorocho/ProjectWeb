@@ -26,8 +26,7 @@
 	</center>
 
 	<center>
-	<th><a style="color: red;float:right: ;" href="http://localhost:8080/ProjectWeb/nuevoproducto.jsp">
-        Nuevo</a></th>
+	
 		<table>
 			<tr>
 				<th style='display: none;'>Id<</th>
@@ -36,7 +35,8 @@
 				<th>Costo</th>
 				<th>Actualizar</th>
 				<th>Eliminar</th>
-				
+				<th><a style="color: red;float:right: ;" href="http://localhost:8080/ProjectWeb/nuevoproducto.jsp">
+        Nuevo</a></th>
 			</tr>
 			<%
 				List<Producto> listaProdu = (List<Producto>) request
