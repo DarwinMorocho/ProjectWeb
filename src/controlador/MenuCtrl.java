@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import servicios.ServicioFactura;
 import servicios.ServicioProducto;
 import modelo.Cliente;
 import modelo.Factura;
+import modelo.DetalleFactura;
 import modelo.Producto;
 
 /**
@@ -26,6 +28,7 @@ public class MenuCtrl extends HttpServlet {
 	ServicioProducto servicioProducto = new ServicioProducto();
 	ServicioCliente servicioCliente= new ServicioCliente();
 	ServicioFactura servicioFactura= new ServicioFactura();
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,7 +45,6 @@ public class MenuCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 
 		String menu = request.getParameter("par");
 		System.out.println("entra al serlevt  menu "+menu);
@@ -71,10 +73,31 @@ public class MenuCtrl extends HttpServlet {
 				request.setAttribute("FACTURA", listaFacturas);
 				// redireccionar a la vista
 				System.out.print("2");
-				RequestDispatcher rdFactura = request.getServletContext().getRequestDispatcher("/consultarcliente.jsp");
+				RequestDispatcher rdFactura = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 				rdFactura.forward(request, response);
 				break;
 		}
+
+// if menu es factura
+//			String producto = request.getParameter("producto_factura");
+//			String cantidad = request.getParameter("cantidad_factura");
+//			String descripcion = request.getParameter("descripcion_factura");
+//			String subtotal = request.getParameter("subtotal_factura");
+//			String total = request.getParameter("total_factura");
+//			List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
+//			DetalleFactura detalleFactura = new DetalleFactura();
+//			detalleFactura.setProducto(new Producto());
+//			detalleFactura.setDetCantidad(new java.math.BigDecimal("0.01"));
+//			detalleFactura.setDetDescripcion("niguna");
+//			detalleFactura.setDetSubtotal(new java.math.BigDecimal("2.45"));
+//			detalleFactura.setDetTotal(new java.math.BigDecimal("4.5"));
+//
+//			detallesFactura.add(detalleFactura);
+//			request.setAttribute("DETALLES", detallesFactura);
+//			RequestDispatcher rd = request.getServletContext()
+//					.getRequestDispatcher("/factura.jsp");
+//			rd.forward(request, response);
+
 		
 	}
 
