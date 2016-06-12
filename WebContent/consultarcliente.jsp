@@ -62,6 +62,7 @@
 				<td><a href="ActualizarClienteCtrl?id=<%=l.getIdCliente()%>">
 						Actualizar </a></td>
 				<td><a href="EliminarClienteCtrl?id=<%=l.getIdCliente()%>">Eliminar</td>
+				<td><a href="ConcultaFacturasCtrl?id=<%=l.getIdCliente()%>">Facturas</td>
 			</tr>
 			<%
 				}
