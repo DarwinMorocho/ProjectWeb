@@ -99,9 +99,9 @@ public class ServicioProducto {
         return listaProductos;
     }
 
-    public List<Producto> findByIdProducto(Integer valor) {
+    public Producto findByIdProducto(Integer valor) {
 
-        List<Producto> listaProductos = new ArrayList<Producto>();
+        Producto listaProductos = new Producto();
         try {
             //Connection connection = em.unwrap(Connection.class);
 
@@ -109,7 +109,7 @@ public class ServicioProducto {
             em.getTransaction().begin();
             Query query = em.createNamedQuery("Producto.findByIdProducto", Producto.class);
             query.setParameter("idProducto", valor);
-            listaProductos = (List<Producto>) query.getResultList();
+            listaProductos = (Producto) query.getSingleResult();
 
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class ServicioProducto {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createNamedQuery("Producto.findByProdNombre", Producto.class);
-            query.setParameter("prodNombre", valor);
+            query.setParameter("prodNombre", "%"+valor+"%");
             listaProductos = (List<Producto>) query.getResultList();
 
             em.getTransaction().commit();

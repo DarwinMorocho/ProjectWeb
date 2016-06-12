@@ -14,7 +14,7 @@ import java.util.List;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByUsuNombre", query = "SELECT u FROM Usuario u WHERE u.usuNombre = :usuNombre"),
-    @NamedQuery(name = "Usuario.findByValidarUsuario", query = "SELECT u FROM Usuario u WHERE u.usuNombre = :usuNombre and u.usuPassword = :usuPassword"),
+    @NamedQuery(name = "Usuario.findByValidarUsuario", query = "SELECT u FROM Usuario u WHERE u.usuLogin = :usuLogin and u.usuPassword = :usuPassword"),
     @NamedQuery(name = "Usuario.findByUsuLogin", query = "SELECT u FROM Usuario u WHERE u.usuLogin = :usuLogin"),
     @NamedQuery(name = "Usuario.findByUsuPassword", query = "SELECT u FROM Usuario u WHERE u.usuPassword = :usuPassword"),
     @NamedQuery(name = "Usuario.findByUsuCorreo", query = "SELECT u FROM Usuario u WHERE u.usuCorreo = :usuCorreo"),

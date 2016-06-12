@@ -17,7 +17,7 @@ import java.util.List;
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
     @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto"),
     @NamedQuery(name = "Producto.findByProdCodigo", query = "SELECT p FROM Producto p WHERE p.prodCodigo = :prodCodigo"),
-    @NamedQuery(name = "Producto.findByProdNombre", query = "SELECT p FROM Producto p WHERE p.prodNombre = :prodNombre"),
+    @NamedQuery(name = "Producto.findByProdNombre", query = "SELECT p FROM Producto p WHERE p.prodNombre like :prodNombre"),
     @NamedQuery(name = "Producto.findByPordCostoVentaRef", query = "SELECT p FROM Producto p WHERE p.pordCostoVentaRef = :pordCostoVentaRef"),
     @NamedQuery(name = "Producto.findByPordCostoVentaFinal", query = "SELECT p FROM Producto p WHERE p.pordCostoVentaFinal = :pordCostoVentaFinal"),
     @NamedQuery(name = "Producto.findByProdEstado", query = "SELECT p FROM Producto p WHERE p.prodEstado = :prodEstado")})
@@ -56,6 +56,28 @@ public class Producto implements Serializable {
 	
 	public Producto() {
 	}
+	
+	public Producto( BigDecimal pordCostoVentaFinal,
+			String prodCodigo, int prodEstado, String prodNombre) {
+		super();
+		this.idProducto = idProducto;
+		this.pordCostoVentaFinal = pordCostoVentaFinal;
+		this.prodCodigo = prodCodigo;
+		this.prodEstado = prodEstado;
+		this.prodNombre = prodNombre;
+	}
+
+	public Producto(int idProducto, BigDecimal pordCostoVentaFinal,
+			String prodCodigo, int prodEstado, String prodNombre) {
+		super();
+		this.idProducto = idProducto;
+		this.pordCostoVentaFinal = pordCostoVentaFinal;
+		this.prodCodigo = prodCodigo;
+		this.prodEstado = prodEstado;
+		this.prodNombre = prodNombre;
+	}
+
+
 
 	public int getIdProducto() {
 		return this.idProducto;

@@ -15,7 +15,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
     @NamedQuery(name = "Cliente.findByIdCliente", query = "SELECT c FROM Cliente c WHERE c.idCliente = :idCliente"),
-    @NamedQuery(name = "Cliente.findByCliCedula", query = "SELECT c FROM Cliente c WHERE c.cliCedula = :cliCedula"),
+    @NamedQuery(name = "Cliente.findByCliCedula", query = "SELECT c FROM Cliente c WHERE c.cliCedula like :cliCedula"),
     @NamedQuery(name = "Cliente.findByCliNombre", query = "SELECT c FROM Cliente c WHERE c.cliNombre = :cliNombre"),
     @NamedQuery(name = "Cliente.findByCliRazonSocial", query = "SELECT c FROM Cliente c WHERE c.cliRazonSocial = :cliRazonSocial"),
     @NamedQuery(name = "Cliente.findByCliDireccion", query = "SELECT c FROM Cliente c WHERE c.cliDireccion = :cliDireccion"),
@@ -59,6 +59,22 @@ public class Cliente implements Serializable {
 	}
 	
 	
+
+	public Cliente(int idCliente, String cliCedula, String cliCorreo,
+			String cliDireccion, String cliMovil, String cliNombre,
+			String cliRazonSocial, String cliTelefono) {
+		super();
+		this.idCliente = idCliente;
+		this.cliCedula = cliCedula;
+		this.cliCorreo = cliCorreo;
+		this.cliDireccion = cliDireccion;
+		this.cliMovil = cliMovil;
+		this.cliNombre = cliNombre;
+		this.cliRazonSocial = cliRazonSocial;
+		this.cliTelefono = cliTelefono;
+	}
+
+
 
 	public Cliente(String cliCedula, String cliCorreo, String cliDireccion,
 			String cliMovil, String cliNombre, String cliRazonSocial,

@@ -4,7 +4,6 @@
  */
 package servicios;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,130 +18,129 @@ import modelo.Cliente;
  */
 public class ServicioCliente {
 
-    private EntityManager em;
+	private EntityManager em;
 
-    public EntityManager getEm() {
-        return em;
-    }
+	public EntityManager getEm() {
+		return em;
+	}
 
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
 
-    public void crear(Cliente cliente) {
+	public void crear(Cliente cliente) {
 
-        try {
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            em.persist(cliente);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en insertar Cliente");
-        } finally {
-            em.close();
-        }
+		try {
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			em.persist(cliente);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en insertar Cliente");
+		} finally {
+			em.close();
+		}
 
-    }
+	}
 
-    public void eliminar(Cliente cliente) {
+	public void eliminar(Cliente cliente) {
 
-        try {
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            em.remove(em.merge(cliente));
-            em.getTransaction().commit();
+		try {
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			em.remove(em.merge(cliente));
+			em.getTransaction().commit();
 
+		} catch (Exception e) {
+			System.out.println("Error en eliminar  Cliente" + e);
+		} finally {
+			em.close();
+		}
 
+	}
 
-        } catch (Exception e) {
-            System.out.println("Error en eliminar  Cliente" + e);
-        } finally {
-            em.close();
-        }
+	public void modificar(Cliente cliente) {
 
-    }
+		try {
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			em.merge(cliente);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en insertar Cliente");
+		} finally {
+			em.close();
+		}
 
-    public void modificar(Cliente cliente) {
+	}
 
-        try {
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            em.merge(cliente);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en insertar Cliente");
-        } finally {
-            em.close();
-        }
+	public List<Cliente> findAll() {
 
-    }
+		List<Cliente> listaClientes = new ArrayList<Cliente>();
+		try {
+			// Connection connection = em.unwrap(Connection.class);
 
-    public List<Cliente> findAll() {
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("Cliente.findAll", Cliente.class);
+			// query.setParameter("perCedula", cedula);
+			listaClientes = (List<Cliente>) query.getResultList();
 
-        List<Cliente> listaClientes = new ArrayList<Cliente>();
-        try {
-            //Connection connection = em.unwrap(Connection.class);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out
+					.println("Error en lsa consulta Cliente" + e.getMessage());
+		} finally {
+			em.close();
+		}
 
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            Query query = em.createNamedQuery("Cliente.findAll", Cliente.class);
-//            query.setParameter("perCedula", cedula);
-            listaClientes = (List<Cliente>) query.getResultList();
+		return listaClientes;
+	}
 
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en lsa consulta Cliente" +e.getMessage());
-        } finally {
-            em.close();
-        }
+	public Cliente findByIdCliente(Integer valor) {
 
-        return listaClientes;
-    }
+		Cliente listaClientes = new Cliente();
+		try {
+			// Connection connection = em.unwrap(Connection.class);
 
-    public List<Cliente> findByIdCliente(Integer valor) {
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("Cliente.findByIdCliente",
+					Cliente.class);
+			query.setParameter("idCliente", valor);
+			listaClientes = (Cliente) query.getSingleResult();
 
-        List<Cliente> listaClientes = new ArrayList<Cliente>();
-        try {
-            //Connection connection = em.unwrap(Connection.class);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en lsa consulta Cliente");
+		} finally {
+			em.close();
+		}
 
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            Query query = em.createNamedQuery("Cliente.findByIdCliente", Cliente.class);
-            query.setParameter("idCliente", valor);
-            listaClientes = (List<Cliente>) query.getResultList();
+		return listaClientes;
+	}
 
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en lsa consulta Cliente");
-        } finally {
-            em.close();
-        }
+	public List<Cliente> findByCliCedula(String valor) {
 
-        return listaClientes;
-    }
+		List<Cliente> listaClientes = new ArrayList<Cliente>();
+		try {
+			// Connection connection = em.unwrap(Connection.class);
 
-    
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("Cliente.findByCliCedula",
+					Cliente.class);
+			query.setParameter("cliCedula", "%" + valor + "%");
+			listaClientes = (List<Cliente>) query.getResultList();
 
-    public List<Cliente> findByCliCedula(String valor) {
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en lsa consulta Cliente");
+		} finally {
+			em.close();
+		}
 
-        List<Cliente> listaClientes = new ArrayList<Cliente>();
-        try {
-            //Connection connection = em.unwrap(Connection.class);
-
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            Query query = em.createNamedQuery("Cliente.findByCliCedula", Cliente.class);
-            query.setParameter("cliCedula", valor);
-            listaClientes = (List<Cliente>) query.getResultList();
-
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en lsa consulta Cliente");
-        } finally {
-            em.close();
-        }
-
-        return listaClientes;
-    }
+		return listaClientes;
+	}
 
 }

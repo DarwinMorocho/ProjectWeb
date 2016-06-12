@@ -1,7 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,6 +65,7 @@ public class BuscarProveedorCtrl extends HttpServlet {
 			System.out.println("cleinet "+item.getCliCedula());
 		}
 		ServicioProducto servicioProducto= new ServicioProducto();
+		List<Producto> listaProd= servicioProducto.findAll();
 		for (Producto item : servicioProducto.findAll()) {
 			System.out.println("producto "+item.getProdNombre());
 		}
@@ -78,6 +81,16 @@ public class BuscarProveedorCtrl extends HttpServlet {
 		for (DetalleFactura item : servicioDetalleFactura.findAll()) {
 			System.out.println("detalle "+item.getDetDescripcion());
 		}
+		
+		
+		request.setAttribute("PRODUCTO", listaProd);
+		//redireccionar a la vista
+		System.out.print("2");
+		RequestDispatcher rd = 
+				request.getServletContext().getRequestDispatcher(
+						"/index.jsp");
+		rd.forward(request, response);
+		System.out.print("3");
 		
 		//insert
 		Cliente cli= new Cliente("1718276433","ddddddd","ddddddd", "234567","234567","234567", "234567");

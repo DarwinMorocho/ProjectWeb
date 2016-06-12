@@ -156,13 +156,16 @@ public class ServicioUsuario {
 			em.getTransaction().begin();
 			Query query = em.createNamedQuery("Usuario.findByValidarUsuario",
 					Usuario.class);
-			query.setParameter("usuNombre", usuario);
+			query.setParameter("usuLogin", usuario);
 			query.setParameter("usuPassword", password);
 
 			listaUsuarios = (List<Usuario>) query.getResultList();
+			System.out.println("longitud de la lista de usu "+listaUsuarios.size());
 			if (listaUsuarios.size() > 0) {
+				System.out.println("existe el usuario");
 				usuario2 = listaUsuarios.get(0);
 			} else {
+				System.out.println("no encuentra en la base al usuari");
 				usuario2 = null;
 
 			}
