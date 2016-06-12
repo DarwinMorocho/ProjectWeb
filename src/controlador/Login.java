@@ -50,7 +50,7 @@ public class Login extends HttpServlet {
 				String usuario=request.getParameter("usuario");
 				String password=request.getParameter("password");
 				Usuario usu=servicioUsuario.validarUsuario(usuario, password);
-				System.out.println("entra al serlevt"+usuario+"   "+password);
+				System.out.println("entra al serlevt "+usuario+"   "+password);
 			//	System.out.println("recuperado "+usu.getUsuLogin()+" pass"+usu.getUsuPassword());
 				if(usu!=null){
 					

@@ -177,13 +177,16 @@ public class ServicioUsuario {
 
 			em = HelperPersistencia.getEMF();
 			em.getTransaction().begin();
-			Query query = em.createNamedQuery("Usuario.findByValidarUsuario",
-					Usuario.class);
+			Query query = em.createNamedQuery("Usuario.findByValidarUsuario",Usuario.class);
 			query.setParameter("usuLogin", usuario);
 			query.setParameter("usuPassword", password);
-
+			
+			System.out.println(usuario);
+			System.out.println(password);
+			
 			listaUsuarios = (List<Usuario>) query.getResultList();
 			System.out.println("longitud de la lista de usu "+listaUsuarios.size());
+			
 			if (listaUsuarios.size() > 0) {
 				System.out.println("existe el usuario");
 				usuario2 = listaUsuarios.get(0);

@@ -31,7 +31,7 @@ public class NuevaFacturaCtrl extends HttpServlet {
 	ServicioFactura servicioFactura= new ServicioFactura();
 	//ServicioUsuario servicioUsuario= new ServicioUsuario();
 	ServicioCliente servicioCliente= new ServicioCliente();
-	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//"dd/MM/yyyy"
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,7 +63,7 @@ public class NuevaFacturaCtrl extends HttpServlet {
 			//String usuario = request.getParameter("fac_usuario");//??????????????
 			String numeroFactura = request.getParameter("fac_numero");
 			String fecha = request.getParameter("fac_fecha");// "11-11-2012";
-			System.out.println("Fecha: "+fecha);
+			System.out.println(fecha);
 			Date inputDate = dateFormat.parse(fecha);
 			String subtotal = request.getParameter("fac_subtotal");
 			String iva = request.getParameter("fac_iva");
