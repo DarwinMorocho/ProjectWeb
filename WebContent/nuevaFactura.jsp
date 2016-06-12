@@ -19,28 +19,21 @@
 		String tituloPagina = "Crear Local";
 	%>
 	<%@include file="../commons/header.jsp"%>
-	<section> 
-
-	<% %>
+	<section> <%
+ 	
+ %>
 	<form action="AgregarDetalleTablaCtrl" method="post">
-	
+
 		<div>
-	<label>Número: </label>
-	<input type="text" name="numero_factura"/>
-	<label>Fecha: </label>
-	<input type="text" name="fecha_factura"/>
-	<label>Subtotal: </label>
-	<input type="text" name="subtotal_factura"/>
-	<label>IVA: </label>
-	<input type="text" name="iva_factura"/>
-	<label>Total: </label>
-	<input type="text" name="total_factura"/>
-	<label>Estado: </label>
-	<input type="text" name="estado_factura"/>
-	<label>tipo: </label>
-	<input type="text" name="tipo_factura"/>	
-	
-	</div>
+			<label>Número: </label> <input type="text" name="numero_factura" /> <label>Fecha:
+			</label> <input type="text" name="fecha_factura" /> <label>Subtotal:
+			</label> <input type="text" name="subtotal_factura" /> <label>IVA: </label> <input
+				type="text" name="iva_factura" /> <label>Total: </label> <input
+				type="text" name="total_factura" /> <label>Estado: </label> <input
+				type="text" name="estado_factura" /> <label>tipo: </label> <input
+				type="text" name="tipo_factura" />
+
+		</div>
 		<table id="dataTable">
 			<tr>
 				<th>Produco</th>
@@ -49,6 +42,7 @@
 				<th>Subtotal</th>
 				<th>Total</th>
 			</tr>
+
 			<tr>
 				<td><input id="1" type="text" name="producto_factura" /></td>
 				<td><input id="2" type="text" name="cantidad_factura" /></td>
@@ -56,11 +50,12 @@
 				<td><input id="4" type="text" name="subtotal_factura" /></td>
 				<td><input id="5" type="text" name="total_factura" /></td>
 				<!-- <td><input type="submit" value="agregar" /></td>  -->
-				<td><INPUT type="button" value="Ingresar" onclick="addRow('dataTable')" /></td>
+				<td><INPUT type="button" value="Ingresar"
+					onclick="addRow('dataTable')" /></td>
 			</tr>
 
 		</table>
-			<%-- <table>
+		<%-- <table>
 			<%List<DetalleFactura> detalles = (List<DetalleFactura>) request.getAttribute("DETALLES");
 			
 		if(detalles != null){
@@ -84,7 +79,7 @@
 		%>
 		</table>  --%>
 
-
+		<input type="submit" value="Guardar factura" class="button" />
 
 	</form>
 
