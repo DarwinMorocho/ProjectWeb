@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import modelo.Cliente;
 import modelo.Usuario;
 import modelo.Usuario;
 import modelo.Usuario;
@@ -115,6 +116,28 @@ public class ServicioUsuario {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println("Error en lsa consulta Usuario");
+		} finally {
+			em.close();
+		}
+
+		return listaUsuarios;
+	}
+	
+	public Usuario findOneByIdUsuario(Integer valor) {
+
+		Usuario listaUsuarios = new Usuario();
+		try {
+			// Connection connection = em.unwrap(Connection.class);
+
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("Usuario.findByIdUsuario",Usuario.class);
+			query.setParameter("idUsuario", valor);
+			listaUsuarios = (Usuario) query.getSingleResult();
+
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en lsa consulta one Usuario");
 		} finally {
 			em.close();
 		}

@@ -42,7 +42,9 @@ li a:hover {
 	<li><a
 		href="MenuCtrl?par=cliente">Cliente</a></li>
 	<li><a
-		href="MenuCtrl?par=factura">Facturar</a></li>
+
+		href="MenuCtrl?par=factura">Factura</a></li>
+
 	<li><a style="float: right;color: red"
 		href="MenuCtrl?par=login">Salir</a></li>
 </ul>
