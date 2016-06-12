@@ -42,6 +42,6 @@
 			}
 			}
 		%>
-	
+	</table>
 </body>
 </html>
