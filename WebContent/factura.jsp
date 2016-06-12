@@ -50,11 +50,11 @@
 				<th>Total</th>
 			</tr>
 			<tr>
-				<td><input type="text" name="producto_factura" /></td>
-				<td><input type="text" name="cantidad_factura" /></td>
-				<td><input type="text" name="descripcion_factura" /></td>
-				<td><input type="text" name="subtotal_factura" /></td>
-				<td><input type="text" name="total_factura" /></td>
+				<td><input id="1" type="text" name="producto_factura" /></td>
+				<td><input id="2" type="text" name="cantidad_factura" /></td>
+				<td><input id="2" type="text" name="descripcion_factura" /></td>
+				<td><input id="2" type="text" name="subtotal_factura" /></td>
+				<td><input id="2" type="text" name="total_factura" /></td>
 				<!-- <td><input type="submit" value="agregar" /></td>  -->
 				<td><INPUT type="button" value="Ingresar" onclick="addRow('dataTable')" /></td>
 			</tr>
