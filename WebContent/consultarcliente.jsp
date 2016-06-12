@@ -27,7 +27,9 @@
 	</center>
 
 	<center>
-
+<th><a style="color: red; float: right:;"
+					href="http://localhost:8080/ProjectWeb/nuevocliente.jsp">
+						Nuevo</a></th>
 		<table style="width: 100%">
 			<tr>
 				<th style='display: none;'>Id<</th>
@@ -40,9 +42,7 @@
 				<th>Correo</th>
 					<th>Actualizar</th>
 				<th>Eliminar</th>
-				<th><a style="color: red; float: right:;"
-					href="http://localhost:8080/ProjectWeb/nuevocliente.jsp">
-						Nuevo</a></th>
+				
 			</tr>
 			<%
 				List<Cliente> listaCli = (List<Cliente>) request

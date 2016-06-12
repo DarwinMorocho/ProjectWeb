@@ -34,19 +34,16 @@ li a:hover {
 
 </header>
 
-
+<!-- <form method="post" action="ActualizarProcutoCtrl"> -->
 
 <ul>
 	<li><a class="active"
-		href="http://localhost:8080/ProjectWeb/consultarproductos.jsp">Producto</a></li>
+		href="MenuCtrl?par=producto">Producto</a></li>
 	<li><a
-		href="http://localhost:8080/ProjectWeb/consultarcliente.jsp">Cliente</a></li>
+		href="MenuCtrl?par=cliente">Cliente</a></li>
 	<li><a
-		href="http://localhost:8080/ProjectWeb/consultarproducto.jsp">Facturar</a></li>
+		href="MenuCtrl?par=1">Facturar</a></li>
 	<li><a style="float: right;color: red"
-		href="http://localhost:8080/ProjectWeb/index.jsp">Salir</a></li>
+		href="MenuCtrl?par=login">Salir</a></li>
 </ul>
-<!--       <a style="color: red;float:right: ;" href="http://localhost:8080/ProjectWeb/index.jsp"> -->
-<!--         Salir</a> -->
-<!--    </nav> -->
-
+<!-- </form> -->

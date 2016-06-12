@@ -10,22 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servicios.ServicioCliente;
 import servicios.ServicioProducto;
+import modelo.Cliente;
 import modelo.Producto;
 
 /**
- * Servlet implementation class EliminarProductoCtrl
+ * Servlet implementation class MenuCtrl
  */
-@WebServlet("/EliminarProductoCtrl")
-public class EliminarProductoCtrl extends HttpServlet {
+@WebServlet("/MenuCtrl")
+public class MenuCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ServicioProducto servicioProducto= new ServicioProducto();
-    
+	ServicioProducto servicioProducto = new ServicioProducto();
+	ServicioCliente servicioCliente= new ServicioCliente();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public EliminarProductoCtrl() {
+	public MenuCtrl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -37,20 +39,29 @@ public class EliminarProductoCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String id = request.getParameter("id");
-		Producto prod= new Producto();
-		prod.setIdProducto(Integer.valueOf(id));
-		servicioProducto.eliminar(prod);
-
-		List<Producto> listaProd= servicioProducto.findByProdNombre("");
-		request.setAttribute("PRODUCTO", listaProd);
-		//redireccionar a la vista
 		
-		RequestDispatcher rd = 
-				request.getServletContext().getRequestDispatcher(
-						"/consultarproductos.jsp");
-		rd.forward(request, response);
+
+		String prod = request.getParameter("par");
+		System.out.println("entra al serlevt  menu "+prod);
+		if (prod.equals("producto")) {
+
+			List<Producto> listaProd = servicioProducto.findByProdNombre("");
+			request.setAttribute("PRODUCTO", listaProd);
+			// redireccionar a la vista
+			System.out.print("1");
+			RequestDispatcher rd = request.getServletContext()
+					.getRequestDispatcher("/consultarproductos.jsp");
+			rd.forward(request, response);
+		}else{
+			List<Cliente> listaCli = servicioCliente.findByCliCedula("");
+			request.setAttribute("CLIENTE", listaCli);
+			// redireccionar a la vista
+			System.out.print("2");
+			RequestDispatcher rd = request.getServletContext()
+					.getRequestDispatcher("/consultarcliente.jsp");
+			rd.forward(request, response);
+			
+		}
 	}
 
 	/**

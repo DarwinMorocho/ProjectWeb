@@ -74,8 +74,9 @@ public class ActualizarProductoCtrl extends HttpServlet {
 		
 	
 		
-//		Producto producto = (Producto) servicioProducto.findByIdProducto(Integer.valueOf(id));
-//		request.setAttribute("PRODUCTO", producto);
+
+		List<Producto> listaProd= servicioProducto.findByProdNombre("");
+		request.setAttribute("PRODUCTO", listaProd);
 		// redireccionar a la vista
 		System.out.print("2");
 		RequestDispatcher rd = 
