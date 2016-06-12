@@ -62,7 +62,8 @@ public class NuevaFacturaCtrl extends HttpServlet {
 			String cliente = request.getParameter("fac_cliente");
 			//String usuario = request.getParameter("fac_usuario");//??????????????
 			String numeroFactura = request.getParameter("fac_numero");
-			String fecha = request.getParameter("fac_fecha");// "11-11-2012";		
+			String fecha = request.getParameter("fac_fecha");// "11-11-2012";
+			System.out.println("Fecha: "+fecha);
 			Date inputDate = dateFormat.parse(fecha);
 			String subtotal = request.getParameter("fac_subtotal");
 			String iva = request.getParameter("fac_iva");

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.Producto;
 import modelo.Usuario;
+import servicios.LoginSession;
 import servicios.ServicioProducto;
 import servicios.ServicioUsuario;
 
@@ -54,6 +55,7 @@ public class Login extends HttpServlet {
 				if(usu!=null){
 					
 					System.out.println("ingresa al sistema");
+					LoginSession.getInstance().setUsuarioLogueado(usu);
 //					List<Producto> listaProd= servicioProducto.findAll();
 //					request.setAttribute("PRODUCTO", listaProd);
 					RequestDispatcher rd = 
