@@ -69,6 +69,21 @@ public class Factura implements Serializable {
 	public Factura() {
 	}
 
+	
+	public Factura(Cliente cliente, Usuario usuario, int facNumero, Date facFecha, BigDecimal facSubtotal,
+			BigDecimal facIva, BigDecimal facTotal) {
+		super();
+		this.cliente = cliente;
+		this.usuario = usuario;
+		this.facNumero = facNumero;
+		this.facFecha = facFecha;
+		this.facSubtotal = facSubtotal;
+		this.facIva = facIva;
+		this.facTotal = facTotal;
+		//this.detalleFacturas = null;
+	}
+
+
 	public int getIdFactura() {
 		return this.idFactura;
 	}
