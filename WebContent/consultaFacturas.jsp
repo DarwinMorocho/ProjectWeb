@@ -18,6 +18,7 @@
 			<th>Total</th>
 			<th>Estado</th>
 			<th>Tipo</th>
+			<th>Ir detalles</th>
 		</tr>
 		<%
 			List<Factura> facturas = (List<Factura>) request
@@ -27,16 +28,17 @@
 				for (Factura f : facturas) {
 		%>
 		<tr>
-			<input type="text" name="numero_factura"
-				value="<%=f.getFacNumero()%>" />
-			<input type="text" name="fecha_factura" value="<%=f.getFacFecha()%>" />
-			<input type="text" name="subtotal_factura"
-				value="<%=f.getFacSubtotal()%>" />
-			<inputtype ="text" name="iva_factura" value="<%=f.getFacIva()%> " />
-			<input type="text" name="total_factura" value="<%=f.getFacTotal()%>" />
-			<input type="text" name="estado_factura"
-				value="<%=f.getFacEstado()%>" />
-			<input type="text" name="tipo_factura" value="<%=f.getFacTipo()%>" />
+			<td><input type="text" name="numero_factura"
+				value="<%=f.getFacNumero()%>" /></td>
+			<td><input type="text" name="fecha_factura" value="<%=f.getFacFecha()%>" /></td>
+			<td><input type="text" name="subtotal_factura"
+				value="<%=f.getFacSubtotal()%>" /></td>
+			<td><input type ="text" name="iva_factura" value="<%=f.getFacIva()%> " /></td>
+			<td><input type="text" name="total_factura" value="<%=f.getFacTotal()%>" /></td>
+			<td><input type="text" name="estado_factura"
+				value="<%=f.getFacEstado()%>" /></td>
+			<td><input type="text" name="tipo_factura" value="<%=f.getFacTipo()%>" /></td>
+			<td><a href="BuscarDetalleFacturaCtrl?id=<%=f.getIdFactura()%>">Detalle</a></td>
 		</tr>
 		<%
 			}
