@@ -49,7 +49,7 @@
 				<td><%=l.getProdNombre()%></td>
 				<td><%=l.getPordCostoVentaFinal()%></td>
 
-				<td><a href="ActualizarProcutoCtrl?id=<%=l.getIdProducto()%>">
+				<td><a href="ActualizarProductoCtrl?id=<%=l.getIdProducto()%>">
 						Actualizar </a></td>
 				<td><a href="EliminarProductoCtrl?id=<%=l.getIdProducto()%>">Eliminar</td>
 			</tr>

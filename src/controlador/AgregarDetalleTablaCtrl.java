@@ -36,8 +36,8 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		List<DetalleFactura> detalles = (List<DetalleFactura>) request.getAttribute("DETALLES1");
-		System.out.println("detalles . descripcion"+detalles.get(0).getDetDescripcion());
+		
+		
 		String producto = request.getParameter("producto_factura");
 		String cantidad = request.getParameter("cantidad_factura");
 		String descripcion = request.getParameter("descripcion_factura");
