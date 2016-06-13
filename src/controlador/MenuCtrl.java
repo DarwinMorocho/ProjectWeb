@@ -10,8 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 import servicios.ServicioCategoria;
+
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
 import servicios.ServicioProducto;
@@ -30,6 +33,7 @@ public class MenuCtrl extends HttpServlet {
 	ServicioProducto servicioProducto = new ServicioProducto();
 	ServicioCliente servicioCliente = new ServicioCliente();
 	ServicioFactura servicioFactura = new ServicioFactura();
+	ServicioCategoria servicioCategoria = new ServicioCategoria();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -82,15 +86,21 @@ public class MenuCtrl extends HttpServlet {
 			break;
 		case "categoriaProducto":
 			
-			ServicioCategoria servicioCategoria = new ServicioCategoria();
 			List<Categoria> categorias = new ArrayList<Categoria>();
 			categorias = servicioCategoria.findAll();
-			
 			request.setAttribute("CATEGORIAS", categorias);
 			RequestDispatcher rd = request.getServletContext()
 					.getRequestDispatcher("/consultaCategoriasProductos.jsp");
 			rd.forward(request, response);
 			break;
+			
+			case "logout":
+				//LoginSession.getInstance().setUsuarioLogueado(null);
+				HttpSession session = request.getSession();
+				session.invalidate();
+				RequestDispatcher rdIndex = request.getServletContext().getRequestDispatcher("/index.jsp");
+				rdIndex.forward(request, response);
+				break;
 		}
 
 		// if menu es factura

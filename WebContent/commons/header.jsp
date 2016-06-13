@@ -40,10 +40,9 @@ li a:hover {
 	<li><a class="active" href="MenuCtrl?par=producto">Producto</a></li>
 	<li><a href="MenuCtrl?par=cliente">Cliente</a></li>
 	<li><a href="MenuCtrl?par=factura">Factura</a></li>
-	<li><a href="MenuCtrl?par=categoriaProducto">Categoria de
-			producto </a></li>
+	<li><a href="MenuCtrl?par=categoriaProducto">Categoria de producto </a></li>
 
-	<li><a style="float: right; color: red" href="MenuCtrl?par=login">Salir</a></li>
+	<li><a style="float: right; color: red" href="MenuCtrl?par=logout">Salir</a></li>
 
 </ul>
 <!-- </form> -->
