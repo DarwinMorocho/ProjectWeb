@@ -12,7 +12,7 @@
 		<class>modelo.Usuario</class>
 
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" /> 
+		 	<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect" />  
 
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/inventarioepn" />
 			<property name="javax.persistence.jdbc.user" value="root" />
