@@ -21,7 +21,7 @@
 
 
 	<center>
-		<form method="post" action="ActualizarProcutoCtrl">
+		<form method="post" action="ActualizarProductoCtrl">
 			<%
 				Producto p = (Producto)
 
@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<th></th>
-					<th><input type="submit" value="Guardar" class="boton" /> <a
+					<th><input type="submit" value="Guardar cambios" class="boton" /> <a
 						style="color: blue; float: right:;"
 						href="http://localhost:8080/ProjectWeb/consultarproductos.jsp">
 							Regresar</a></th>

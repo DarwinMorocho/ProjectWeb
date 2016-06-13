@@ -72,9 +72,14 @@ public class ActualizarProductoCtrl extends HttpServlet {
 		String name = request.getParameter("name");
 		String cod = request.getParameter("cod");
 		String cost = request.getParameter("cost");
+		String idCategoria = request.getParameter("opcionSeleccionada");
+		Categoria categoria = new Categoria();
+		ServicioCategoria servicioCategoria = new ServicioCategoria();
+		categoria = servicioCategoria.findByIdCategoria(Integer.parseInt(idCategoria)).get(0);
 		if (name != null) {
 			Producto prod = new Producto(Integer.valueOf(id),
 					BigDecimal.valueOf(Double.valueOf(cost)), cod, 1, name);
+			prod.setCategoria(categoria);
 			servicioProducto.modificar(prod);
 		}
 
