@@ -61,8 +61,8 @@ public class Login extends HttpServlet {
 					session.setAttribute("usuario", usu);
 					Usuario test = (Usuario) session.getAttribute("usuario");
 					System.out.println("Usuario que ingresa "+test.getUsuLogin());
-//					List<Producto> listaProd= servicioProducto.findAll();
-//					request.setAttribute("PRODUCTO", listaProd);
+					List<Producto> listaProd= servicioProducto.findAll();
+					request.setAttribute("PRODUCTO", listaProd);
 					RequestDispatcher rd = 
 							request.getServletContext().getRequestDispatcher(
 									"/consultarproductos.jsp");
