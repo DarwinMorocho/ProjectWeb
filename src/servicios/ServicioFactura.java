@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.faces.view.facelets.Facelet;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import modelo.Factura;
@@ -86,8 +87,9 @@ public class ServicioFactura {
 			em.getTransaction().begin();
 			Query query = em.createNamedQuery("Factura.findAll", Factura.class);
 			// query.setParameter("perCedula", cedula);
+			
 			listaFacturas = (List<Factura>) query.getResultList();
-
+			
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			System.out
@@ -163,6 +165,16 @@ public class ServicioFactura {
 		}
 
 		return listaFacturas;
+	}
+	
+	public Factura obtenerUltimaFactura(){
+		
+		em = HelperPersistencia.getEMF();
+		Factura factura = new Factura();
+		Query q = em.createQuery("select nvl((max f.id),0) from Factura as f",Factura.class);
+		factura = (Factura)q.getResultList().get(0);
+		
+		return factura;
 	}
 
 }

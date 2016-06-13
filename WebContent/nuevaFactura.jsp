@@ -212,7 +212,7 @@ Factura factura = (Factura)request.getAttribute("FACTURA");
 			%>
 		</table>
 
-		<!-- <input type="submit" value="Guardar factura" class="button" /> -->
+		<input type="submit" name="guardarFactura" value="Guardar factura" class="button" /> 
 
 
 
