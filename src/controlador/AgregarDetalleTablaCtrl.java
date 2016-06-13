@@ -82,15 +82,19 @@ if(botonGuardarFactura!=null){
 	
 	GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
 	ServicioFactura servicioFactura = new ServicioFactura();
+	HttpSession session = request.getSession();			
+	Usuario usuarioLogin = (Usuario) session.getAttribute("usuario");
+	factura.setCliente(cliente);
+	
+	factura.setUsuario(usuarioLogin);
+	
 	servicioFactura.crear(factura);
 	factura = servicioFactura.obtenerUltimaFactura();
 	System.out.println("ULTIMA FACTURA "+factura.getIdFactura());
 	
-	HttpSession session = request.getSession();			
-	Usuario usuarioLogin = (Usuario) session.getAttribute("usuario");
+	
 	for(DetalleFactura df: GuardaDetalleTemporal.detallesFactura){
-		factura.setCliente(cliente);
-		factura.setUsuario(usuarioLogin);
+
 		df.setFactura(servicioFactura.obtenerUltimaFactura());
 		System.out.println("for detalles");
 	ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
