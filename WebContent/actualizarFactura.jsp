@@ -28,7 +28,6 @@
 			<table>
 			<tr>
 					<th colspan="2">Actualizar Factura</th>
-					
 				</tr>
 				<tr>
 					<th style='display: none;'></th>
