@@ -47,89 +47,98 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
-	
+
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		Factura factura = agregarCabecera(request);
-String botonGuardarFactura= request.getParameter("guardarFactura");
-String idProducto = request.getParameter("selCombo");
-String cantidad = request.getParameter("cantidad_factura");
-String descripcion = request.getParameter("descripcion_factura");
+		String botonGuardarFactura = request.getParameter("guardarFactura");
+		String idProducto = request.getParameter("selCombo");
+		String cantidad = request.getParameter("cantidad_factura");
+		String descripcion = request.getParameter("descripcion_factura");
 
+		Cliente cliente = new Cliente();
+		ServicioCliente servicioCliente = new ServicioCliente();
+		cliente = servicioCliente.findByIdCliente(1); // /cambiar este valorq
+														// uemado
 
+		if (botonGuardarFactura != null) {
+			System.out.println(botonGuardarFactura);
+			Producto productoElegido = servicioProducto
+					.findByIdProducto(Integer.valueOf(idProducto));
+			DetalleFactura detalleFactura = new DetalleFactura();
+			detalleFactura.setProducto(productoElegido);
+			detalleFactura.setDetCantidad(new java.math.BigDecimal(cantidad));
+			detalleFactura.setDetDescripcion(descripcion);
+			detalleFactura.setDetSubtotal(productoElegido
+					.getPordCostoVentaFinal().multiply(
+							new java.math.BigDecimal(cantidad)));
+			productoElegido.getPordCostoVentaFinal().multiply(
+					new java.math.BigDecimal(cantidad));
+			detalleFactura.setDetTotal(productoElegido.getPordCostoVentaFinal()
+					.multiply(new java.math.BigDecimal(cantidad)));
 
-Cliente cliente = new Cliente();
-ServicioCliente servicioCliente= new ServicioCliente();
-cliente = servicioCliente.findByIdCliente(1); ///cambiar este valorq uemado
+			GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
+			ServicioFactura servicioFactura = new ServicioFactura();
+			HttpSession session = request.getSession();
+			Usuario usuarioLogin = (Usuario) session.getAttribute("usuario");
+			factura.setCliente(cliente);
+			factura.setUsuario(usuarioLogin);
 
-if(botonGuardarFactura!=null){
-	System.out.println(botonGuardarFactura);
-	Producto productoElegido = servicioProducto.findByIdProducto(Integer
-			.valueOf(idProducto));
-	DetalleFactura detalleFactura = new DetalleFactura();
-	detalleFactura.setProducto(productoElegido);
-	detalleFactura.setDetCantidad(new java.math.BigDecimal(cantidad));
-	detalleFactura.setDetDescripcion(descripcion);
-	detalleFactura.setDetSubtotal(productoElegido.getPordCostoVentaFinal()
-			.multiply(new java.math.BigDecimal(cantidad)));
-	productoElegido.getPordCostoVentaFinal().multiply(
-			new java.math.BigDecimal(cantidad));
-	detalleFactura.setDetTotal(productoElegido.getPordCostoVentaFinal()
-			.multiply(new java.math.BigDecimal(cantidad)));
-	
-	GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
-	ServicioFactura servicioFactura = new ServicioFactura();
-	HttpSession session = request.getSession();			
-	Usuario usuarioLogin = (Usuario) session.getAttribute("usuario");
-	factura.setCliente(cliente);
-	
-	factura.setUsuario(usuarioLogin);
-	
-	servicioFactura.crear(factura);
-	factura = servicioFactura.obtenerUltimaFactura();
-	System.out.println("ULTIMA FACTURA "+factura.getIdFactura());
-	
-	
-	for(DetalleFactura df: GuardaDetalleTemporal.detallesFactura){
+			servicioFactura.crear(factura);
+			// factura = servicioFactura.obtenerUltimaFactura();
+			List<Factura> facturas = new ArrayList<Factura>();
+			facturas = servicioFactura.findAll();
+			factura = facturas.get(servicioFactura.findAll().size()-1);
+			System.out.println("ULTIMA FACTURA " + factura.getIdFactura());
 
-		df.setFactura(servicioFactura.obtenerUltimaFactura());
-		System.out.println("for detalles");
-	ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
-	servicioDetalleFactura.crear(df);
-	}
-}else{
-		
-		
+			for (DetalleFactura df : GuardaDetalleTemporal.detallesFactura) {
+				df.setFactura(factura);
+				System.out.println("for detalles");
+				ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
+				servicioDetalleFactura.crear(df);
+			}
+			GuardaDetalleTemporal.detallesFactura.clear();
 
-		Producto productoElegido = servicioProducto.findByIdProducto(Integer
-				.valueOf(idProducto));
-		DetalleFactura detalleFactura = new DetalleFactura();
-		detalleFactura.setProducto(productoElegido);
-		detalleFactura.setDetCantidad(new java.math.BigDecimal(cantidad));
-		detalleFactura.setDetDescripcion(descripcion);
-		detalleFactura.setDetSubtotal(productoElegido.getPordCostoVentaFinal()
-				.multiply(new java.math.BigDecimal(cantidad)));
-		productoElegido.getPordCostoVentaFinal().multiply(
-				new java.math.BigDecimal(cantidad));
-		detalleFactura.setDetTotal(productoElegido.getPordCostoVentaFinal()
-				.multiply(new java.math.BigDecimal(cantidad)));
-		GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
-		request.setAttribute("DETALLES", GuardaDetalleTemporal.detallesFactura);
+			List<Factura> listaFacturas = servicioFactura.findAll();
+			request.setAttribute("FACTURA", listaFacturas);
+			// redireccionar a la vista
+			RequestDispatcher rdFactura = request.getServletContext()
+					.getRequestDispatcher("/consultarFacturas.jsp");
+			rdFactura.forward(request, response);
+		} else {
 
-		
-		ServicioProducto servicioProducto = new ServicioProducto();
-		List<Producto> listaProd = servicioProducto.findAll();
-		request.setAttribute("PRODUCTO", listaProd);
+			Producto productoElegido = servicioProducto
+					.findByIdProducto(Integer.valueOf(idProducto));
+			DetalleFactura detalleFactura = new DetalleFactura();
+			detalleFactura.setProducto(productoElegido);
+			detalleFactura.setDetCantidad(new java.math.BigDecimal(cantidad));
+			detalleFactura.setDetDescripcion(descripcion);
+			detalleFactura.setDetSubtotal(productoElegido
+					.getPordCostoVentaFinal().multiply(
+							new java.math.BigDecimal(cantidad)));
+			productoElegido.getPordCostoVentaFinal().multiply(
+					new java.math.BigDecimal(cantidad));
+			detalleFactura.setDetTotal(productoElegido.getPordCostoVentaFinal()
+					.multiply(new java.math.BigDecimal(cantidad)));
+			GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
+			request.setAttribute("DETALLES",
+					GuardaDetalleTemporal.detallesFactura);
+			
+			ServicioProducto servicioProducto = new ServicioProducto();
+			List<Producto> listaProd = servicioProducto.findAll();
+			request.setAttribute("PRODUCTO", listaProd);
+			List<Cliente> listaClientes= servicioCliente.findAll();
+			request.setAttribute("CLIENTE", listaClientes);
+			
+			request.setAttribute("FACTURA", factura);
 
-		request.setAttribute("FACTURA", factura);
-		System.out.println("AgregarDetalleTablaCtrl");
-		RequestDispatcher rd = request.getServletContext()
-				.getRequestDispatcher("/nuevaFactura.jsp");
-		rd.forward(request, response);
-	}
+			RequestDispatcher rd = request.getServletContext()
+					.getRequestDispatcher("/nuevaFactura.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	public Factura agregarCabecera(HttpServletRequest request) {

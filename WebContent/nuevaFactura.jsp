@@ -101,7 +101,7 @@ Factura factura = (Factura)request.getAttribute("FACTURA");
 					<th>
 					<select name="fac_cliente">
 						<option value="0">Escoger...</option>
-					<%-- <%
+					 <%
 						List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("CLIENTE");
 						if (listaClientes != null) {
 							for (Cliente cliente : listaClientes) {
@@ -110,7 +110,7 @@ Factura factura = (Factura)request.getAttribute("FACTURA");
 					<%
 						}
 						}
-					%> --%>
+					%> 
 					</select>
 					<th>
 				</tr>

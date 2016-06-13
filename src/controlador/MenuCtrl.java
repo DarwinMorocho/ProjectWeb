@@ -80,7 +80,6 @@ public class MenuCtrl extends HttpServlet {
 			List<Factura> listaFacturas = servicioFactura.findAll();
 			request.setAttribute("FACTURA", listaFacturas);
 			// redireccionar a la vista
-			System.out.print("2 FACTURASSSSS");
 			RequestDispatcher rdFactura = request.getServletContext()
 					.getRequestDispatcher("/consultarFacturas.jsp");
 			rdFactura.forward(request, response);

@@ -34,12 +34,19 @@ public class ServicioDetalleFactura {
 	public void crear(DetalleFactura detalleFactura) {
 
 		try {
+			System.out.println("id prod "+detalleFactura.getProducto().getIdProducto());
+			System.out.println("id cant "+detalleFactura.getDetCantidad());
+			System.out.println("id subt "+detalleFactura.getDetSubtotal());
+			System.out.println("id total "+detalleFactura.getDetTotal());
+			System.out.println("id factura "+detalleFactura.getFactura().getIdFactura());
+			
 			em = HelperPersistencia.getEMF();
 			em.getTransaction().begin();
+			System.out.println("aaaaaaaaaaaaaaa");
 			em.persist(detalleFactura);
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			System.out.println("Error en insertar Factura");
+			System.out.println("Error en insertar Detalle Factura");
 		} finally {
 			em.close();
 		}

@@ -171,7 +171,9 @@ public class ServicioFactura {
 		
 		em = HelperPersistencia.getEMF();
 		Factura factura = new Factura();
-		Query q = em.createQuery("select nvl((max f.id),0) from Factura as f",Factura.class);
+		System.out.println("consulta ultima factura 1");
+		Query q = em.createQuery("select nvl((max f.id_factura),0) from Factura as f",Factura.class);
+		System.out.println("consulta ultima factura2");
 		factura = (Factura)q.getResultList().get(0);
 		
 		return factura;
