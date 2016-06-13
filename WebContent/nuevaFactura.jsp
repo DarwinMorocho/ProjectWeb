@@ -93,7 +93,7 @@
 				<td><input type="text" name="descripcion_factura" /></td>
 				<td><input type="text" name="subtotal_factura" disabled/></td>
 				<td><input type="text" name="total_factura" disabled/></td>
-				<td><input type="submit" value="agregar" /></td>
+				<!-- <td><input type="submit" value="agregar"  -->/></td> <!-- AQUI SE ENVIA LA INFORMACION A NUEVAFACTURACTRL QUE INVOCA A LA LISTA ESTATICA QUE ALMACENA LA INFORMACION -->
 
 			</tr>
 			<%
@@ -123,7 +123,7 @@
 			%>
 		</table>
 
-		<input type="submit" value="Guardar factura" class="button" />
+		<!-- <input type="submit" value="Guardar factura" class="button" /> -->
 
 
 
