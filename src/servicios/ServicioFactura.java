@@ -107,8 +107,7 @@ public class ServicioFactura {
 
 			em = HelperPersistencia.getEMF();
 			em.getTransaction().begin();
-			Query query = em.createNamedQuery("Factura.findByIdFactura",
-					Factura.class);
+			Query query = em.createNamedQuery("Factura.findByIdFactura",Factura.class);
 			query.setParameter("idFactura", valor);
 			listaFacturas = (List<Factura>) query.getResultList();
 
@@ -144,7 +143,7 @@ public class ServicioFactura {
 		return factura;
 	}
 
-	public List<Factura> findByFacNumero(String valor) {
+	public List<Factura> findByFacNumero(Integer valor) {
 
 		List<Factura> listaFacturas = new ArrayList<Factura>();
 		try {
@@ -152,8 +151,7 @@ public class ServicioFactura {
 
 			em = HelperPersistencia.getEMF();
 			em.getTransaction().begin();
-			Query query = em.createNamedQuery("Factura.findByFacNumero",
-					Factura.class);
+			Query query = em.createNamedQuery("Factura.findByFacNumero",Factura.class);
 			query.setParameter("facNumero", valor);
 			listaFacturas = (List<Factura>) query.getResultList();
 

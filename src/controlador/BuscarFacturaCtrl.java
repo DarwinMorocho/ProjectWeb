@@ -55,11 +55,11 @@ public class BuscarFacturaCtrl extends HttpServlet {
 		String numeroFactura = request.getParameter("txtBuscar");
 		
 		
-		List<Factura> listaFacturas= servicioFactura.findByFacNumero(numeroFactura);
+		List<Factura> listaFacturas= servicioFactura.findByFacNumero(Integer.parseInt(numeroFactura));
 		request.setAttribute("FACTURA", listaFacturas);
 		//redireccionar a la vista
 		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
 	}
 
