@@ -37,10 +37,10 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
 if(accion.equals("agregarDetalle")){
-	String producto = request.getParameter("producto_factura");
-	String cantidad = request.getParameter("cantidad_factura");
-	String descripcion = request.getParameter("descripcion_factura");
-	String subtotal = request.getParameter("subtotal_factura");
+//	String producto = request.getParameter("producto_factura");
+//	String cantidad = request.getParameter("cantidad_factura");
+//	String descripcion = request.getParameter("descripcion_factura");
+//	String subtotal = request.getParameter("subtotal_factura");
 	String total = request.getParameter("total_factura");
 //	List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 	
@@ -59,6 +59,11 @@ if(accion.equals("agregarDetalle")){
 	detalleFactura.setDetTotal(new java.math.BigDecimal("9.2"));
 	GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
 	request.setAttribute("DETALLES", GuardaDetalleTemporal.detallesFactura);
+	
+
+	ServicioProducto servicioProducto= new ServicioProducto();
+	List<Producto> listaProd= servicioProducto.findAll();
+	request.setAttribute("PRODUCTO", listaProd);
 	
 	System.out.println("AgregarDetalleTablaCtrl");
 	RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/nuevaFactura.jsp");
