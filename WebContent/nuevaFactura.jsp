@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					
+					<th>
 					<select name="fac_cliente">
 						<option value="0">Escoger...</option>
 					<%
@@ -46,7 +46,9 @@
 						}
 						}
 					%>
+					
 					</select>
+					</th>
 				</tr>
 
 				<tr>
@@ -79,14 +81,14 @@
 				</tr>
 				
 				<%-- <%} %> --%>
-				<tr>
+			<!-- 	<tr>
 					<th></th>
 					<th><input type="submit" value="Guardar" class="boton" /> <a
 						style="color: blue; float: right:;"
 						href="http://localhost:8080/ProjectWeb/consultarFacturas.jsp">
 							Regresar</a></th>
 
-				</tr>
+				</tr> -->
 
 <%} else{
 Factura factura = (Factura)request.getAttribute("FACTURA");
@@ -96,7 +98,7 @@ Factura factura = (Factura)request.getAttribute("FACTURA");
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					
+					<th>
 					<select name="fac_cliente">
 						<option value="0">Escoger...</option>
 					<%-- <%
@@ -110,6 +112,7 @@ Factura factura = (Factura)request.getAttribute("FACTURA");
 						}
 					%> --%>
 					</select>
+					<th>
 				</tr>
 
 				<tr>
