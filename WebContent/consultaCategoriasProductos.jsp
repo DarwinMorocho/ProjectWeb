@@ -11,7 +11,7 @@
 <body>
 	<center>
 	<a href="http://localhost:8080/ProjectWeb/nuevaCategoria.jsp">Nueva categoría</a>
-	<a href="http://localhost:8080/ProjectWeb/index.jsp">Menu</a>
+	<a href="http://localhost:8080/ProjectWeb/consultarproductos.jsp">Menu</a>
 	</center>
 		<table>
 			<tr>

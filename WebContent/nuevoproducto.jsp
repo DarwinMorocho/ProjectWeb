@@ -1,3 +1,4 @@
+<%@page import="modelo.Categoria"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Producto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -44,6 +45,20 @@
 
 				</tr>
 				<tr>
+					<th>Categoría:</th>
+					<th><select name="opcionSeleccionada">
+				<%List<Categoria> categorias  = (List<Categoria>) request.getAttribute("CATEGORIAS"); 
+					if(categorias!=null){
+					for(Categoria cat: categorias){
+					%>
+							<option name="categoria" value="<%=cat.getIdCategoria()%>"><%= cat.getCatNombre()%></option>
+
+							<%} 
+					}%>
+					</select></th>
+
+				</tr>
+				<tr>
 					<th></th>
 					<th><input type="submit" value="Guardar" class="boton" /> <a
 						style="color: blue; float: right:;"
@@ -60,6 +75,6 @@
 
 
 		</form>
-		</center>
+	</center>
 </body>
 </html>
