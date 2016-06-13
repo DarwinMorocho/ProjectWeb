@@ -96,13 +96,14 @@
 			</tr>
 
 			<tr>
-				<td><SELECT NAME="selCombo">
+				<td><select name="selCombo">
+				<option value="0">Escoger...</option>
 						<%List<Producto> productos= (List<Producto>) request.getAttribute("PRODUCTO");
 					for(Producto p: productos){
 			%>
-						<OPTION name="producto_factura"><%=p.getProdNombre()%></OPTION>
+						<option value="<%=p.getIdProducto()%>"><%=p.getProdNombre()%></option>
 						<%} %>
-				</SELECT></td>
+				</select></td>
 				<td><input type="text" name="cantidad_factura" /></td>
 				<td><input type="text" name="descripcion_factura" /></td>
 				<td><input type="text" name="subtotal_factura" disabled/></td>
@@ -111,8 +112,7 @@
 
 			</tr>
 			<%
-				List<DetalleFactura> detalles = (List<DetalleFactura>) request
-						.getAttribute("DETALLES");
+				List<DetalleFactura> detalles = (List<DetalleFactura>) request.getAttribute("DETALLES");
 
 				if (detalles != null) {
 					for (DetalleFactura df : detalles) {

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +18,15 @@ import javax.servlet.http.HttpSession;
 
 import modelo.Categoria;
 import modelo.Cliente;
+import modelo.DetalleFactura;
 import modelo.Factura;
+import modelo.Producto;
 import modelo.Usuario;
 import servicios.ServicioCategoria;
 import servicios.ServicioCliente;
+import servicios.ServicioDetalleFactura;
 import servicios.ServicioFactura;
+import servicios.ServicioProducto;
 import servicios.ServicioUsuario;
 
 /**
@@ -34,7 +39,11 @@ public class NuevaFacturaCtrl extends HttpServlet {
 	ServicioFactura servicioFactura= new ServicioFactura();
 	//ServicioUsuario servicioUsuario= new ServicioUsuario();
 	ServicioCliente servicioCliente= new ServicioCliente();
+	ServicioProducto servicioProducto= new ServicioProducto();
+	ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
+
 	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//"dd/MM/yyyy"
+
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,6 +62,14 @@ public class NuevaFacturaCtrl extends HttpServlet {
 		// llenar combo clientes
 		List<Cliente> listaClientes= servicioCliente.findAll();
 		request.setAttribute("CLIENTE", listaClientes);
+		
+		List<Producto> listaProductos= servicioProducto.findAll();
+		request.setAttribute("PRODUCTO", listaProductos);
+		
+		List<DetalleFactura> detalles = GuardaDetalleTemporal.detallesFactura;
+		//detalles = servicioDetalleFactura.findByFactura(factura);
+		
+		request.setAttribute("DETALLES", detalles);
 	}
 
 	/**
@@ -97,6 +114,11 @@ public class NuevaFacturaCtrl extends HttpServlet {
 				servicioFactura.crear(nuevaFactura);
 				
 			}
+			// Guardar los detalles
+			// primero obtener id de factura creada y luego establecer ese id a todos los detalles
+			
+			// Limpiar variables
+			GuardaDetalleTemporal.detallesFactura.clear();
 
 
         } catch (Exception e) {
