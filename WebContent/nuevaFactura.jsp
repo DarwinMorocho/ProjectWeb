@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="modelo.Factura"%>
+<%@page import="modelo.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -71,7 +71,59 @@
 
 			</table>
 
+		<table>
 
+			<tr>
+				<th>Produco</th>
+				<th>Cantidad</th>
+				<th>Desripcion</th>
+				<th>Subtotal</th>
+				<th>Total</th>
+			</tr>
+
+			<tr>
+				<td><SELECT NAME="selCombo">
+						<%List<Producto> productos= (List<Producto>) request.getAttribute("PRODUCTO");
+					for(Producto p: productos){
+			%>
+						<OPTION name="producto_factura"><%=p.getProdNombre()%></OPTION>
+						<%} %>
+				</SELECT></td>
+				<td><input type="text" name="cantidad_factura" /></td>
+				<td><input type="text" name="descripcion_factura" /></td>
+				<td><input type="text" name="subtotal_factura" disabled/></td>
+				<td><input type="text" name="total_factura" disabled/></td>
+				<td><input type="submit" value="agregar" /></td>
+
+			</tr>
+			<%
+				List<DetalleFactura> detalles = (List<DetalleFactura>) request
+						.getAttribute("DETALLES");
+
+				if (detalles != null) {
+					for (DetalleFactura df : detalles) {
+			%>
+			<tr>
+				<td><p><%=df.getProducto().getProdNombre()%></p></td>
+				<td><input type="text" name="cantidad_factura"
+					value="<%=df.getDetCantidad()%>" /></td>
+				<td><input type="text" name="descripcion_factura"
+					value="<%=df.getDetDescripcion()%>" /></td>
+				<td><input type="text" name="subtotal_factura"
+					value="<%=df.getDetSubtotal()%>" /></td>
+				<td><input type="text" name="total_factura"
+					value="<%=df.getDetTotal()%>" /></td>
+				<!-- <td><input type="submit" value="agregar" /></td> -->
+
+			</tr>
+			<%
+				}
+
+				}
+			%>
+		</table>
+
+		<input type="submit" value="Guardar factura" class="button" />
 
 
 
