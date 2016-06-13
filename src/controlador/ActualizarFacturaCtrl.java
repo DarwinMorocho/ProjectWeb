@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.Usuario;
-import servicios.LoginSession;
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
 

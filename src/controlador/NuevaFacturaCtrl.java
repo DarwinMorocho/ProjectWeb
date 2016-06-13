@@ -19,7 +19,6 @@ import modelo.Categoria;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.Usuario;
-import servicios.LoginSession;
 import servicios.ServicioCategoria;
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
