@@ -30,46 +30,62 @@ import servicios.ServicioUsuario;
 public class BuscarProductoCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ServicioProducto servicioProducto= new ServicioProducto();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BuscarProductoCtrl() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	ServicioProducto servicioProducto = new ServicioProducto();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<Producto> listaProd= servicioProducto.findAll();
-		request.setAttribute("PRODUCTO", listaProd);
-		//redireccionar a la vista
-		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
-		rd.forward(request, response);
+	public BuscarProductoCtrl() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String consulta = request.getParameter("mensaje");
+		if (consulta.equals("consultaProductosCombo")) {
+
+			List<Producto> listaProd = servicioProducto.findAll();
+			request.setAttribute("PRODUCTO", listaProd);
+			// redireccionar a la vista
+
+			RequestDispatcher rd = request.getServletContext()
+					.getRequestDispatcher("/nuevaFactura.jsp");
+			rd.forward(request, response);
+		} else {
+			List<Producto> listaProd = servicioProducto.findAll();
+			request.setAttribute("PRODUCTO", listaProd);
+			// redireccionar a la vista
+
+			RequestDispatcher rd = request.getServletContext()
+					.getRequestDispatcher("/consultarproductos.jsp");
+			rd.forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String nombre = request.getParameter("txtBuscar");
-	
-	
-		List<Producto> listaProd= servicioProducto.findByProdNombre(nombre);
+
+		List<Producto> listaProd = servicioProducto.findByProdNombre(nombre);
 		request.setAttribute("PRODUCTO", listaProd);
-		//redireccionar a la vista
-		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
+		// redireccionar a la vista
+
+		RequestDispatcher rd = request.getServletContext()
+				.getRequestDispatcher("/consultarproductos.jsp");
 		rd.forward(request, response);
-		
-		
-		
+
 	}
 
 }

@@ -26,7 +26,7 @@
 	</center>
 
 	<center>
-	<th><a style="color: red;float:right: ;" href="http://localhost:8080/ProjectWeb/nuevaFactura.jsp">
+	<th><a style="color: red;float:right: ;" href="BuscarProductoCtrl?mensaje=consultaProductosCombo">
         Nuevo</a></th>
 		<table>
 			<tr>
