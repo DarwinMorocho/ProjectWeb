@@ -35,11 +35,40 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		String accion = request.getParameter("accion");
+if(accion.equals("agregarDetalle")){
+	String producto = request.getParameter("producto_factura");
+	String cantidad = request.getParameter("cantidad_factura");
+	String descripcion = request.getParameter("descripcion_factura");
+	String subtotal = request.getParameter("subtotal_factura");
+	String total = request.getParameter("total_factura");
+//	List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
+	
+//	Producto productoElegido = servicioProducto.findByIdProducto(Integer.valueOf(producto));
+//	DetalleFactura detalleFactura = new DetalleFactura();
+//	detalleFactura.setProducto(productoElegido);
+//	detalleFactura.setDetCantidad(BigDecimal.valueOf(Double.valueOf(cantidad)));
+//	//detalleFactura.setDetDescripcion("niguna");
+//	detalleFactura.setDetSubtotal(BigDecimal.valueOf(Double.valueOf(subtotal)));
+//	detalleFactura.setDetTotal(BigDecimal.valueOf(Double.valueOf(total)));
+	DetalleFactura detalleFactura = new DetalleFactura();
+	detalleFactura.setProducto(new Producto());
+	detalleFactura.setDetCantidad(new java.math.BigDecimal("4.2"));
+	detalleFactura.setDetDescripcion("niguna");
+	detalleFactura.setDetSubtotal(new java.math.BigDecimal("8.2"));
+	detalleFactura.setDetTotal(new java.math.BigDecimal("9.2"));
+	GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
+	request.setAttribute("DETALLES", GuardaDetalleTemporal.detallesFactura);
+	
+	System.out.println("AgregarDetalleTablaCtrl");
+	RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/nuevaFactura.jsp");
+	rd.forward(request, response);
+}
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
 
 		String producto = request.getParameter("producto_factura");
 		String cantidad = request.getParameter("cantidad_factura");
@@ -48,20 +77,24 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 		String total = request.getParameter("total_factura");
 //		List<DetalleFactura> detallesFactura = new ArrayList<DetalleFactura>();
 		
-		Producto productoElegido = servicioProducto.findByIdProducto(Integer.valueOf(producto));
+//		Producto productoElegido = servicioProducto.findByIdProducto(Integer.valueOf(producto));
+//		DetalleFactura detalleFactura = new DetalleFactura();
+//		detalleFactura.setProducto(productoElegido);
+//		detalleFactura.setDetCantidad(BigDecimal.valueOf(Double.valueOf(cantidad)));
+//		//detalleFactura.setDetDescripcion("niguna");
+//		detalleFactura.setDetSubtotal(BigDecimal.valueOf(Double.valueOf(subtotal)));
+//		detalleFactura.setDetTotal(BigDecimal.valueOf(Double.valueOf(total)));
 		DetalleFactura detalleFactura = new DetalleFactura();
-		detalleFactura.setProducto(productoElegido);
-		detalleFactura.setDetCantidad(BigDecimal.valueOf(Double.valueOf(cantidad)));
-		//detalleFactura.setDetDescripcion("niguna");
-		detalleFactura.setDetSubtotal(BigDecimal.valueOf(Double.valueOf(subtotal)));
-		detalleFactura.setDetTotal(BigDecimal.valueOf(Double.valueOf(total)));
-		
+		detalleFactura.setProducto(new Producto());
+		detalleFactura.setDetCantidad(new java.math.BigDecimal("4.2"));
+		detalleFactura.setDetDescripcion("niguna");
+		detalleFactura.setDetSubtotal(new java.math.BigDecimal("8.2"));
+		detalleFactura.setDetTotal(new java.math.BigDecimal("9.2"));
 		GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
 		request.setAttribute("DETALLES", GuardaDetalleTemporal.detallesFactura);
 		
 		System.out.println("AgregarDetalleTablaCtrl");
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/nuevaFactura.jsp");
 		rd.forward(request, response);
-
 	}
 }

@@ -108,7 +108,8 @@
 				<td><input type="text" name="descripcion_factura" /></td>
 				<td><input type="text" name="subtotal_factura" disabled/></td>
 				<td><input type="text" name="total_factura" disabled/></td>
-				 <td><a href="AgregarDetalleTablaCtrl">Agregar</a></td> 
+				 <td><a href="AgregarDetalleTablaCtrl?accion=agregarDetalle">Agregar</a></td>  
+				 <!-- <td><input type="submit" value="Agregar"></a></td>  -->
 
 			</tr>
 			<%
