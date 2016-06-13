@@ -29,12 +29,26 @@
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					<th><input type="text" name="fac_cliente" /></th>
-
+					
+					<select name="fac_cliente">
+						<option value="0">Escoger...</option>
+					<%
+						List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("CLIENTE");
+						if (listaClientes != null) {
+							for (Cliente cliente : listaClientes) {
+					%>
+						<option value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+					<%
+						}
+						}
+					%>
+					</select>
 				</tr>
 
 				<tr>
 					<th>Numero de factura:</th>
+					
+					
 					<th><input type="text" name="fac_numero" /></th>
 
 				</tr>

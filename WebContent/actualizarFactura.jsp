@@ -36,8 +36,29 @@
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					<th><input type="text" name="fac_cliente" value="<%=factura.getCliente().getIdCliente()%>"/></th>
-
+					<th>
+					<select name="fac_cliente">
+						<option value="0">Escoger...</option>
+					<%
+						List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("CLIENTE");
+						if (listaClientes != null) {
+							for (Cliente cliente : listaClientes) {
+								if(cliente.getIdCliente() == factura.getCliente().getIdCliente()){
+					%>
+								<option selected="selected" value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+							
+					<%			
+								} else {
+								
+					%>
+					
+								<option value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+					<%			}
+							}
+						}
+					%>
+					</select>
+					</th>
 				</tr>
 
 				<tr>
