@@ -51,12 +51,12 @@ public class AgregarDetalleTablaCtrl extends HttpServlet {
 		detalleFactura.setDetSubtotal(new java.math.BigDecimal("2.45"));
 		detalleFactura.setDetTotal(new java.math.BigDecimal("4.5"));
 		
-		detalles.add(detalleFactura);
-		request.setAttribute("DETALLES", detalles);
+		GuardaDetalleTemporal.detallesFactura.add(detalleFactura);
+		request.setAttribute("DETALLES", GuardaDetalleTemporal.detallesFactura);
 		
 		System.out.println("AgregarDetalleTablaCtrl");
 		RequestDispatcher rd = request.getServletContext()
-				.getRequestDispatcher("/factura.jsp");
+				.getRequestDispatcher("/nuevaFactura.jsp");
 		rd.forward(request, response);
 
 	}
