@@ -114,6 +114,10 @@ public class NuevaFacturaCtrl extends HttpServlet {
 		request.setAttribute("FACTURA", listaFacturas);
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
+		
+		
+		
+		
 	}
 
 }
