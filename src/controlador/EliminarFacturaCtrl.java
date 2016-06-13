@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Cliente;
+import modelo.DetalleFactura;
 import modelo.Factura;
+import servicios.ServicioDetalleFactura;
 import servicios.ServicioFactura;
 
 /**
@@ -21,6 +24,7 @@ import servicios.ServicioFactura;
 public class EliminarFacturaCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ServicioFactura servicioFactura= new ServicioFactura();
+	ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,12 +41,29 @@ public class EliminarFacturaCtrl extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		System.out.println("ingresa a eliminar factura");
-		String id = request.getParameter("id");
-		Factura facturaEliminar= new Factura();
-		facturaEliminar.setIdFactura(Integer.valueOf(id));
-		servicioFactura.eliminar(facturaEliminar);
-
+		try{
+			System.out.println("ingresa a eliminar factura");
+			String id = request.getParameter("id");
+			Factura facturaEliminar= servicioFactura.findOneByIdFactura(Integer.valueOf(id));
+			List<DetalleFactura> listaDetalles = facturaEliminar.getDetalleFacturas();
+			
+			// Borrar detalles asociados a factura
+			Iterator iterator = listaDetalles.iterator();
+			
+			while(iterator.hasNext()){
+				DetalleFactura detalle = (DetalleFactura)iterator.next();
+				System.out.println(detalle.toString());
+				servicioDetalleFactura.eliminar(detalle);
+			}
+			
+			// Borrar factura
+			servicioFactura.eliminar(facturaEliminar);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		
 		
 		List<Factura> listaFacturas= servicioFactura.findAll();
 		request.setAttribute("FACTURA", listaFacturas);

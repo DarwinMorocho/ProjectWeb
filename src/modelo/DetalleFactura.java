@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@Table(name="detalle_factura")
+@Table(name="DetalleFactura")
 @NamedQueries({
     @NamedQuery(name = "DetalleFactura.findAll", query = "SELECT d FROM DetalleFactura d"),
     @NamedQuery(name = "DetalleFactura.findByIdDetalle", query = "SELECT d FROM DetalleFactura d WHERE d.idDetalle = :idDetalle"),
@@ -108,4 +108,12 @@ public class DetalleFactura implements Serializable {
 		this.producto = producto;
 	}
 
+	@Override
+	public String toString() {
+		return "DetalleFactura [idDetalle=" + idDetalle + ", detCantidad=" + detCantidad + ", detDescripcion="
+				+ detDescripcion + ", detSubtotal=" + detSubtotal + ", detTotal=" + detTotal + ", factura=" + factura
+				+ ", producto=" + producto + "]";
+	}
+
+	
 }

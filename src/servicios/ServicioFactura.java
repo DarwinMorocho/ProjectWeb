@@ -121,6 +121,28 @@ public class ServicioFactura {
 
 		return listaFacturas;
 	}
+	
+	public Factura findOneByIdFactura(Integer valor) {
+
+		Factura factura = new Factura();
+		try {
+			// Connection connection = em.unwrap(Connection.class);
+
+			em = HelperPersistencia.getEMF();
+			em.getTransaction().begin();
+			Query query = em.createNamedQuery("Factura.findByIdFactura",Factura.class);
+			query.setParameter("idFactura", valor);
+			factura = (Factura) query.getSingleResult();
+
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			System.out.println("Error en lsa consulta Factura");
+		} finally {
+			em.close();
+		}
+
+		return factura;
+	}
 
 	public List<Factura> findByFacNumero(String valor) {
 
