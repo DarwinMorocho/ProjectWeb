@@ -51,6 +51,9 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 
 		Factura factura = (Factura) servicioFactura.findByIdFactura(Integer.valueOf(id)).get(0);
 		request.setAttribute("FACTURA", factura);
+		
+		List<Cliente> listaClientes= servicioCliente.findAll();
+		request.setAttribute("CLIENTE", listaClientes);
 		// redireccionar a la vista
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/actualizarFactura.jsp");
 		rd.forward(request, response);

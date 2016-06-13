@@ -14,10 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Categoria;
 import modelo.Cliente;
 import modelo.Factura;
 import modelo.Usuario;
 import servicios.LoginSession;
+import servicios.ServicioCategoria;
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
 import servicios.ServicioUsuario;
@@ -48,6 +50,9 @@ public class NuevaFacturaCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		// llenar combo clientes
+		List<Cliente> listaClientes= servicioCliente.findAll();
+		request.setAttribute("CLIENTE", listaClientes);
 	}
 
 	/**

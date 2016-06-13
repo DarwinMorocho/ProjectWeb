@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="modelo.Factura"%>
+<%@page import="modelo.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,8 +37,29 @@
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					<th><input type="text" name="fac_cliente" value="<%=factura.getCliente().getIdCliente()%>"/></th>
-
+					<th>
+					<select name="fac_cliente">
+						<option value="0">Escoger...</option>
+					<%
+						List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("CLIENTE");
+						if (listaClientes != null) {
+							for (Cliente cliente : listaClientes) {
+								if(cliente.getIdCliente() == factura.getCliente().getIdCliente()){
+					%>
+								<option selected="selected" value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+							
+					<%			
+								} else {
+								
+					%>
+					
+								<option value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+					<%			}
+							}
+						}
+					%>
+					</select>
+					</th>
 				</tr>
 
 				<tr>
