@@ -20,10 +20,14 @@
 
 	<center>
 
-		<form method="post" action="NuevaFacturaCtrl">
+		<form method="post" action="AgregarDetalleTablaCtrl">
 
 
 			<table>
+			<%
+			if(request.getAttribute("FACTURA")==null){
+			
+			%>
 				<tr>
 					<th colspan="2">Nueva Factura</th>
 				</tr>
@@ -73,6 +77,8 @@
 					<th><input type="text" name="fac_total" /></th>
 
 				</tr>
+				
+				<%-- <%} %> --%>
 				<tr>
 					<th></th>
 					<th><input type="submit" value="Guardar" class="boton" /> <a
@@ -82,7 +88,72 @@
 
 				</tr>
 
+<%} else{
+Factura factura = (Factura)request.getAttribute("FACTURA");
+%>
+		<tr>
+					<th colspan="2">Nueva Factura</th>
+				</tr>
+				<tr>
+					<th>Cliente:</th>
+					
+					<select name="fac_cliente">
+						<option value="0">Escoger...</option>
+					<%-- <%
+						List<Cliente> listaClientes = (List<Cliente>) request.getAttribute("CLIENTE");
+						if (listaClientes != null) {
+							for (Cliente cliente : listaClientes) {
+					%>
+						<option value="<%=cliente.getIdCliente()%>"><%=cliente.getCliNombre()%></option>
+					<%
+						}
+						}
+					%> --%>
+					</select>
+				</tr>
 
+				<tr>
+					<th>Numero de factura:</th>
+					
+					
+					<th><input type="text" name="fac_numero" value="<%=factura.getFacNumero() %>" /></th>
+
+				</tr>
+				<tr>
+					<th>Fecha:</th>
+					<th><input type="date" name="fac_fecha" value="<%= factura.getFacFecha()%>" /></th>
+
+				</tr>
+				<tr>
+					<th>Subtotal:</th>
+					<th><input type="text" name="fac_subtotal" value="<%=factura.getFacSubtotal() %>"/></th>
+
+				</tr>
+
+				<tr>
+					<th>Iva:</th>
+					<th><input type="text" name="fac_iva" value="<%= factura.getFacIva()%>"/></th>
+
+				</tr>
+				<tr>
+					<th>Total:</th>
+					<th><input type="text" name="fac_total"  value="<%=factura.getFacTotal() %>"/></th>
+
+				</tr>
+				
+				<%-- <%} %> --%>
+				<!-- <tr>
+					<th></th>
+					<th><input type="submit" value="Guardar" class="boton" /> <a
+						style="color: blue; float: right:;"
+						href="http://localhost:8080/ProjectWeb/consultarFacturas.jsp">
+							Regresar</a></th>
+
+				</tr> -->
+
+
+
+<%} %>
 			</table>
 
 		<table>
@@ -108,8 +179,8 @@
 				<td><input type="text" name="descripcion_factura" /></td>
 				<td><input type="text" name="subtotal_factura" disabled/></td>
 				<td><input type="text" name="total_factura" disabled/></td>
-				 <td><a href="AgregarDetalleTablaCtrl?accion=agregarDetalle">Agregar</a></td>  
-				 <!-- <td><input type="submit" value="Agregar"></a></td>  -->
+				<!--  <td><a href="AgregarDetalleTablaCtrl?accion=agregarDetalle">Agregar</a></td> -->  
+				  <td><input type="submit" value="Agregar"></a></td>  
 
 			</tr>
 			<%
