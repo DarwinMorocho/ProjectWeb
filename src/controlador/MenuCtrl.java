@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import servicios.LoginSession;
 import servicios.ServicioCliente;
 import servicios.ServicioFactura;
 import servicios.ServicioProducto;
@@ -75,6 +77,14 @@ public class MenuCtrl extends HttpServlet {
 				System.out.print("2");
 				RequestDispatcher rdFactura = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 				rdFactura.forward(request, response);
+				break;
+				
+			case "logout":
+				//LoginSession.getInstance().setUsuarioLogueado(null);
+				HttpSession session = request.getSession();
+				session.invalidate();
+				RequestDispatcher rdIndex = request.getServletContext().getRequestDispatcher("/index.jsp");
+				rdIndex.forward(request, response);
 				break;
 		}
 

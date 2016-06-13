@@ -46,6 +46,6 @@ li a:hover {
 		href="MenuCtrl?par=factura">Factura</a></li>
 
 	<li><a style="float: right;color: red"
-		href="MenuCtrl?par=login">Salir</a></li>
+		href="MenuCtrl?par=logout">Salir</a></li>
 </ul>
 <!-- </form> -->

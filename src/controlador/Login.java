@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Producto;
 import modelo.Usuario;
@@ -55,7 +56,12 @@ public class Login extends HttpServlet {
 				if(usu!=null){
 					
 					System.out.println("ingresa al sistema");
-					LoginSession.getInstance().setUsuarioLogueado(usu);
+					//LoginSession.getInstance().setUsuarioLogueado(usu);
+					
+					HttpSession session = request.getSession(true);
+					session.setAttribute("usuario", usu);
+					Usuario test = (Usuario) session.getAttribute("usuario");
+					System.out.println("Usuario que ingresa "+test.getUsuLogin());
 //					List<Producto> listaProd= servicioProducto.findAll();
 //					request.setAttribute("PRODUCTO", listaProd);
 					RequestDispatcher rd = 

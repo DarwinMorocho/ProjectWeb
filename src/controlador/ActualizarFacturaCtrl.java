@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Cliente;
 import modelo.Factura;
@@ -78,12 +79,15 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 			String iva = request.getParameter("fac_iva");
 			String total = request.getParameter("fac_total");
 					
+			System.out.println("ACTUALIZAR FACTURA ");
 			if(numeroFactura!=null){
 				
 				// Encontrar objeto Usuario
 				//Usuario usuarioLogin = servicioUsuario.findOneByIdUsuario(Integer.parseInt(usuario));			
-				Usuario usuarioLogin = LoginSession.getInstance().getUsuarioLogueado();
-				
+				//Usuario usuarioLogin = LoginSession.getInstance().getUsuarioLogueado();
+				HttpSession session = request.getSession();			
+				Usuario usuarioLogin = (Usuario) session.getAttribute("usuario");
+				System.out.println("Sesion del usuario "+usuarioLogin.getIdUsuario());
 				// Encontrar objeto Usuario
 				Cliente clienteEscogido = servicioCliente.findByIdCliente(Integer.parseInt(cliente));
 				
