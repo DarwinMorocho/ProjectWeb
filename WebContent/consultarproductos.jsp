@@ -35,7 +35,7 @@
 				<th>Costo</th>
 				<th>Actualizar</th>
 				<th>Eliminar</th>
-				<th><a style="color: red;float:right: ;" href="http://localhost:8080/ProjectWeb/nuevoproducto.jsp">
+				<th><a style="color: red;float:right: ;" href="NuevoProductoCtrl?accion=recuperarCategoria">
         Nuevo</a></th>
 			</tr>
 			<%
