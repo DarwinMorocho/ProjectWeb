@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="modelo.Producto"%>
+<%@page import="modelo.Categoria"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,6 +54,24 @@
 					<th>Costo:</th>
 					<th><input type="text" name="cost"
 						value=<%=p.getPordCostoVentaFinal()%> /></th>
+
+				</tr>
+				
+				<tr>
+					<th>Categoría:</th>
+					<th><select name="opcionSeleccionada">
+				<%List<Categoria> categorias  = (List<Categoria>) request.getAttribute("CATEGORIAS"); 
+					if(categorias!=null){
+						for(Categoria cat: categorias){
+							if(p.getCategoria().getCatNombre().equals( cat.getCatNombre())){
+					%>
+							<option name="categoria" value="<%=cat.getIdCategoria()%>" selected="selected"><%= cat.getCatNombre()%></option>
+							<%}else{%>
+								<option name="categoria" value="<%=cat.getIdCategoria()%>" ><%= cat.getCatNombre()%></option>
+							<%}
+						}
+					}%>
+					</select></th>
 
 				</tr>
 				<tr>

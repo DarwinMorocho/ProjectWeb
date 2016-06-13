@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,13 +12,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import servicios.ServicioCategoria;
 import servicios.ServicioProducto;
+import modelo.Categoria;
 import modelo.Producto;
 
 /**
  * Servlet implementation class ActualizarProcutoCtrl
  */
-@WebServlet("/ActualizarProcutoCtrl")
+@WebServlet("/ActualizarProductoCtrl")
 public class ActualizarProductoCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,11 +43,14 @@ public class ActualizarProductoCtrl extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String id = request.getParameter("id");
-		
-		
-	
-		
-		Producto producto = (Producto) servicioProducto.findByIdProducto(Integer.valueOf(id));
+
+		List<Categoria> categorias = new ArrayList<Categoria>();
+		ServicioCategoria servicioCategoria = new ServicioCategoria();
+		categorias = servicioCategoria.findAll();
+		request.setAttribute("CATEGORIAS", categorias);
+
+		Producto producto = (Producto) servicioProducto
+				.findByIdProducto(Integer.valueOf(id));
 		request.setAttribute("PRODUCTO", producto);
 		// redireccionar a la vista
 		System.out.print("2");
@@ -61,27 +67,23 @@ public class ActualizarProductoCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String cod = request.getParameter("cod");
 		String cost = request.getParameter("cost");
-		if(name!=null){
+		if (name != null) {
 			Producto prod = new Producto(Integer.valueOf(id),
 					BigDecimal.valueOf(Double.valueOf(cost)), cod, 1, name);
 			servicioProducto.modificar(prod);
 		}
-		
-	
-		
 
-		List<Producto> listaProd= servicioProducto.findByProdNombre("");
+		List<Producto> listaProd = servicioProducto.findByProdNombre("");
 		request.setAttribute("PRODUCTO", listaProd);
 		// redireccionar a la vista
 		System.out.print("2");
-		RequestDispatcher rd = 
-				request.getServletContext().getRequestDispatcher(
-						"/consultarproductos.jsp");
+		RequestDispatcher rd = request.getServletContext()
+				.getRequestDispatcher("/consultarproductos.jsp");
 		rd.forward(request, response);
 	}
 
