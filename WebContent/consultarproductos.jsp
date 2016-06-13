@@ -39,8 +39,7 @@
         Nuevo</a></th>
 			</tr>
 			<%
-				List<Producto> listaProdu = (List<Producto>) request
-						.getAttribute("PRODUCTO");
+				List<Producto> listaProdu = (List<Producto>) request.getAttribute("PRODUCTO");
 				if (listaProdu != null) {
 					for (Producto l : listaProdu) {
 			%>

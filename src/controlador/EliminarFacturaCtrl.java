@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,6 +44,8 @@ public class EliminarFacturaCtrl extends HttpServlet {
 		servicioFactura.eliminar(facturaEliminar);
 
 		
+		List<Factura> listaFacturas= servicioFactura.findAll();
+		request.setAttribute("FACTURA", listaFacturas);
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
 	}

@@ -32,39 +32,39 @@
 				</tr>
 				<tr>
 					<th style='display: none;'></th>
-					<th style='display: none;'><input type="text" name="id" value=<%=factura.getIdFactura()%> /></th>
+					<th style='display: none;'><input type="text" name="id" value="<%=factura.getIdFactura()%>" /></th>
 
 				</tr>
 				<tr>
 					<th>Cliente:</th>
-					<th><input type="text" name="fac_cliente" value=<%=factura.getCliente().getCliNombre()%>/></th>
+					<th><input type="text" name="fac_cliente" value="<%=factura.getCliente().getIdCliente()%>"/></th>
 
 				</tr>
 
 				<tr>
 					<th>Numero de factura:</th>
-					<th><input type="text" name="fac_numero" value=<%=factura.getFacNumero()%>/></th>
+					<th><input type="text" name="fac_numero" value="<%=factura.getFacNumero()%>"/></th>
 
 				</tr>
 				<tr>
 					<th>Fecha:</th>
-					<th><input type="date" name="fac_fecha" value=<%=factura.getFacFecha()%>/></th>
+					<th><input type="date" name="fac_fecha" value="<%=factura.getFacFecha()%>"/></th>
 
 				</tr>
 				<tr>
 					<th>Subtotal:</th>
-					<th><input type="text" name="fac_subtotal" value=<%=factura.getFacSubtotal()%>/></th>
+					<th><input type="text" name="fac_subtotal" value="<%=factura.getFacSubtotal()%>"/></th>
 
 				</tr>
 
 				<tr>
 					<th>Iva:</th>
-					<th><input type="text" name="fac_iva" value=<%=factura.getFacIva()%>/></th>
+					<th><input type="text" name="fac_iva" value="<%=factura.getFacIva()%>"/></th>
 
 				</tr>
 				<tr>
 					<th>Total:</th>
-					<th><input type="text" name="fac_total" value=<%=factura.getFacTotal()%>/></th>
+					<th><input type="text" name="fac_total" value="<%=factura.getFacTotal()%>"/></th>
 
 				</tr>
 				<tr>

@@ -37,6 +37,12 @@ public class BuscarFacturaCtrl extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Factura> listaFacturas= servicioFactura.findAll();
+		request.setAttribute("FACTURA", listaFacturas);
+		//redireccionar a la vista
+		
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -50,7 +56,7 @@ public class BuscarFacturaCtrl extends HttpServlet {
 		
 		
 		List<Factura> listaFacturas= servicioFactura.findByFacNumero(numeroFactura);
-		request.setAttribute("FACTURAS", listaFacturas);
+		request.setAttribute("FACTURA", listaFacturas);
 		//redireccionar a la vista
 		
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");

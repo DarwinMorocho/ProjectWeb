@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +31,7 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 	ServicioFactura servicioFactura= new ServicioFactura();
 	//ServicioUsuario servicioUsuario= new ServicioUsuario();
 	ServicioCliente servicioCliente= new ServicioCliente();
-	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//"dd/MM/yyyy"
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,7 +49,7 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String id = request.getParameter("id");
 
-		Factura factura = (Factura) servicioFactura.findByIdFactura(Integer.valueOf(id));
+		Factura factura = (Factura) servicioFactura.findByIdFactura(Integer.valueOf(id)).get(0);
 		request.setAttribute("FACTURA", factura);
 		// redireccionar a la vista
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/actualizarFactura.jsp");
@@ -64,7 +65,7 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 		
 		try {
             
-			//String estado = request.getParameter("facEstado");
+			String id = request.getParameter("id");
 			String cliente = request.getParameter("fac_cliente");
 			//String usuario = request.getParameter("fac_usuario");//??????????????
 			String numeroFactura = request.getParameter("fac_numero");
@@ -84,6 +85,7 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 				Cliente clienteEscogido = servicioCliente.findByIdCliente(Integer.parseInt(cliente));
 				
 				Factura facturaModificada = new Factura();
+				facturaModificada.setIdFactura(Integer.parseInt(id));
 				facturaModificada.setCliente(clienteEscogido);
 				facturaModificada.setUsuario(usuarioLogin);
 				facturaModificada.setFacNumero(Integer.parseInt(numeroFactura));
@@ -104,7 +106,10 @@ public class ActualizarFacturaCtrl extends HttpServlet {
 		
 
 		// redireccionar a la vista
-		//System.out.print("2");
+		List<Factura> listaFacturas= servicioFactura.findAll();
+		request.setAttribute("FACTURA", listaFacturas);
+		//redireccionar a la vista
+		
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
 	}

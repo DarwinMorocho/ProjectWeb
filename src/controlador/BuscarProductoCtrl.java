@@ -45,6 +45,12 @@ public class BuscarProductoCtrl extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<Producto> listaProd= servicioProducto.findAll();
+		request.setAttribute("PRODUCTO", listaProd);
+		//redireccionar a la vista
+		
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -59,9 +65,7 @@ public class BuscarProductoCtrl extends HttpServlet {
 		request.setAttribute("PRODUCTO", listaProd);
 		//redireccionar a la vista
 		
-		RequestDispatcher rd = 
-				request.getServletContext().getRequestDispatcher(
-						"/consultarproductos.jsp");
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarproductos.jsp");
 		rd.forward(request, response);
 		
 		

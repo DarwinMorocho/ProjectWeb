@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -100,7 +101,10 @@ public class NuevaFacturaCtrl extends HttpServlet {
 //		Producto producto = (Producto) servicioProducto.findByIdProducto(Integer.valueOf(id));
 //		request.setAttribute("PRODUCTO", producto);
 		// redireccionar a la vista
-		//System.out.print("2");
+		//System.out.print("2");		
+		
+		List<Factura> listaFacturas= servicioFactura.findAll();
+		request.setAttribute("FACTURA", listaFacturas);
 		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/consultarFacturas.jsp");
 		rd.forward(request, response);
 	}

@@ -21,22 +21,18 @@
 			<th>Ir detalles</th>
 		</tr>
 		<%
-			List<Factura> facturas = (List<Factura>) request
-					.getAttribute("FACTURAS");
+			List<Factura> facturas = (List<Factura>) request.getAttribute("FACTURA");
 
 			if (facturas != null) {
 				for (Factura f : facturas) {
 		%>
 		<tr>
-			<td><input type="text" name="numero_factura"
-				value="<%=f.getFacNumero()%>" /></td>
+			<td><input type="text" name="numero_factura"value="<%=f.getFacNumero()%>" /></td>
 			<td><input type="text" name="fecha_factura" value="<%=f.getFacFecha()%>" /></td>
-			<td><input type="text" name="subtotal_factura"
-				value="<%=f.getFacSubtotal()%>" /></td>
+			<td><input type="text" name="subtotal_factura"value="<%=f.getFacSubtotal()%>" /></td>
 			<td><input type ="text" name="iva_factura" value="<%=f.getFacIva()%> " /></td>
 			<td><input type="text" name="total_factura" value="<%=f.getFacTotal()%>" /></td>
-			<td><input type="text" name="estado_factura"
-				value="<%=f.getFacEstado()%>" /></td>
+			<td><input type="text" name="estado_factura"value="<%=f.getFacEstado()%>" /></td>
 			<td><input type="text" name="tipo_factura" value="<%=f.getFacTipo()%>" /></td>
 			<td><a href="BuscarDetalleFacturaCtrl?id=<%=f.getIdFactura()%>">Detalle</a></td>
 		</tr>
