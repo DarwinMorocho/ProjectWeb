@@ -48,6 +48,7 @@ public class BuscarProductoCtrl extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String consulta = request.getParameter("mensaje");
+		//esta consulta es para entregar los productos a la interfaz nuevafactura para el combo de productos
 		if (consulta.equals("consultaProductosCombo")) {
 
 			List<Producto> listaProd = servicioProducto.findAll();

@@ -78,7 +78,7 @@
 					<th></th>
 					<th><input type="submit" value="Guardar cambios" class="boton" /> <a
 						style="color: blue; float: right:;"
-						href="http://localhost:8080/ProjectWeb/consultarproductos.jsp">
+						href="BuscarProductoCtrl?mensaje=">
 							Regresar</a></th>
 
 				</tr>
