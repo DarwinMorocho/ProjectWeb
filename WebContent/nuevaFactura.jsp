@@ -16,7 +16,7 @@
 	<%
 		String tituloPagina = "Crear Factura";
 	%>
-	<%@include file="../commons/header.jsp"%>
+	<%@include file="commons/header.jsp"%>
 
 	<center>
 

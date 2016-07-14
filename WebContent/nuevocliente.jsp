@@ -17,7 +17,7 @@
 	<%
 		String tituloPagina = "Crear Local";
 	%>
-	<%@include file="../commons/header.jsp"%>
+	<%@include file="commons/header.jsp"%>
 
 
 
