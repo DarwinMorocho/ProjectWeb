@@ -1,0 +1,2 @@
+insert into usuario(usu_nombre, usu_login, usu_password, usu_correo, usu_nivel)
+values ('pedro', 'pedro', 'pedro', 'pedro@gmail.com',8);
